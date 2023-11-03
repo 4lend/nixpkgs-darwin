@@ -1,5 +1,5 @@
 {
-  description = "Nix for macOS configuration";
+  description = "Minimal Nix for macOS configuration";
 
   ##################################################################################################################
   # 
@@ -16,7 +16,7 @@
       # Replace official cache with a mirror located in China
       #
       # Feel free to remove this line if you are not in China
-      "https://mirrors.ustc.edu.cn/nix-channels/store"
+      # "https://mirrors.ustc.edu.cn/nix-channels/store"
       "https://cache.nixos.org"
     ];
   };
@@ -29,6 +29,30 @@
       url = "github:lnl7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs-darwin";
     };
+    # Home manager
+    home-manager = {
+      url = "github:nix-community/home-manager/release-23.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Flake utilities
+    flake-compat = {
+      url = "github:edolstra/flake-compat";
+      flake = false;
+    };
+    flake-utils.url = "github:numtide/flake-utils";
+
+    # Homebrew
+    homebrew = {
+      url = "github:Homebrew/brew";
+      flake = false;
+    };
+
+    # Other sources
+    comma = {
+      url = "github:Shopify/comma";
+      flake = false;
+    };
   };
 
   # The `outputs` function will return all the build results of the flake. 
@@ -36,22 +60,82 @@
   # parameters in `outputs` are defined in `inputs` and can be referenced by their names. 
   # However, `self` is an exception, this special parameter points to the `outputs` itself (self-reference)
   # The `@` syntax here is used to alias the attribute set of the inputs's parameter, making it convenient to use inside the function.
-  outputs = inputs@{ self, nixpkgs, darwin, ... }:{
-    # TODO please update the whole "your-hostname" placeholder string to your own hostname!
-    # such as darwinConfigurations.mymac = darwin.lib.darwinSystem {
-    darwinConfigurations."your-hostname" = darwin.lib.darwinSystem {
-      system = "x86_64-darwin";  # change this to "aarch64-darwin" if you are using Apple Silicon
-      modules = [
+  outputs = { self, nixpkgs, darwin, home-manager, ... }@inputs:
+    let
+      system = {
+        x86_64-linux = "x86_64-linux";
+        x86_64-darwin = "x86_64-darwin";
+        aarch64-darwin = "aarch64-darwin";
+        aarch64-linux = "aarch64-linux";
+      };
+
+      primaryUserInfo = rec {
+        username = "4lend";
+        fullname = "alfurqani";
+        email = "syifa.alfurqoni@gmail.com";
+        nixConfigDirectory =
+          "/Users/alfurqani/.config/nixpkgs/nix-darwin-kickstarter/minimal";
+        within = {
+          gpg.enable = true;
+          pass.enable = true;
+        };
+      };
+
+      homeManagerStateVersion = "23.05";
+
+      config = { allowUnfree = true; };
+
+      randomModules = [
         ./modules/nix-core.nix
         ./modules/system.nix
         ./modules/apps.nix
-
+        ./modules/homebrew.nix
         ./modules/host-users.nix
       ];
-    };
 
-    # nix code formatter
-    # TODO also change this line to "aarch64-darwin" if you are using Apple Silicon
-    formatter.x86_64-darwin = nixpkgs.legacyPackages.x86_64-darwin.alejandra;
-  };
+      homeManagerModules = {
+        imports = [
+          ./home/home.nix
+          ./home/alacritty.nix
+          ./home/aria2.nix
+          ./home/fzf.nix
+          ./home/git.nix
+          # ./home/helix.nix
+          ./home/kitty.nix
+          ./home/packages.nix
+          ./home/shells.nix
+          ./home/tmux.nix
+          # ./home/neovim.nix
+        ];
+      };
+
+    in
+    {
+      config = { allowUnfree = true; };
+
+      darwinConfigurations = rec {
+        alfurqani = darwin.lib.darwinSystem {
+          # ${primaryUserInfo.fullname} = darwin.lib.darwinSystem {
+          system = system.x86_64-darwin;
+          modules = randomModules ++ [
+            home-manager.darwinModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs = inputs;
+              home-manager.users.${primaryUserInfo.fullname} = homeManagerModules;
+            }
+          ];
+        };
+        # nix code formatter
+        # TODO also change this line to "aarch64-darwin" if you are using Apple Silicon
+        formatter.x86_64-darwin =
+          nixpkgs.legacyPackages.x86_64-darwin.alejandra;
+
+        # darwinModules = {
+        #   system = import ./system/darwin-configuration.nix;
+        # };
+      };
+
+    };
 }
