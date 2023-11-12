@@ -24,14 +24,14 @@
   # This is the standard format for flake.nix. `inputs` are the dependencies of the flake,
   # Each item in `inputs` will be passed as a parameter to the `outputs` function after being pulled and built.
   inputs = {
-    nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-23.05-darwin";
+    nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     darwin = {
       url = "github:lnl7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs-darwin";
     };
     # Home manager
     home-manager = {
-      url = "github:nix-community/home-manager/release-23.05";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -82,8 +82,7 @@
       };
 
       homeManagerStateVersion = "23.05";
-
-      config = { allowUnfree = true; };
+      lib = darwin.lib;
 
       randomModules = [
         ./modules/nix-core.nix
@@ -100,7 +99,7 @@
           ./home/aria2.nix
           ./home/fzf.nix
           ./home/git.nix
-          # ./home/helix.nix
+          ./home/helix.nix
           ./home/kitty.nix
           ./home/packages.nix
           ./home/shells.nix
@@ -111,11 +110,9 @@
 
     in
     {
-      config = { allowUnfree = true; };
 
       darwinConfigurations = rec {
-        alfurqani = darwin.lib.darwinSystem {
-          # ${primaryUserInfo.fullname} = darwin.lib.darwinSystem {
+        ${primaryUserInfo.fullname} = lib.darwinSystem {
           system = system.x86_64-darwin;
           modules = randomModules ++ [
             home-manager.darwinModules.home-manager

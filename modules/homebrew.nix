@@ -24,13 +24,28 @@
     # TODO Feel free to add your favorite apps here.
     brews = [
       # "aria2"  # download tool
+      "mariadb"
+      # "mysql"
     ];
 
     # `brew install --cask`
     # TODO Feel free to add your favorite apps here.
     casks = [
       "sublime-text"
-      # "google-chrome"
+      "brave-browser"
+      "disk-drill"
+      "free-download-manager"
+      "kitty"
+      "mounty"
+      "mpv"
+      "obsidian"
+      "xdm"
+      "google-chrome"
+      "dash"
+      # "fbreader"
+      "send-anywhere"
+      "alacritty"
+      "google-drive"
     ];
   };
 }

@@ -1,27 +1,31 @@
-
 { pkgs, lib, ... }:
 
+let
+  gcList = {
+    hour = "--delete-older-than 1h";
+    day = "--delete-older-than 1d";
+    week = "--delete-older-than 1w";
+    month = "--delete-older-than 1M";
+    year = "--delete-older-than 1M";
+  };
+
+in
 {
+
   # enable flakes globally
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-  # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
-  # Use this instead of services.nix-daemon.enable if you
-  # don't wan't the daemon service to be managed for you.
-  # nix.useDaemon = true;
-
   nix.package = pkgs.nix;
-
   programs.nix-index.enable = true;
 
   # do garbage collection weekly to keep disk usage low
   nix.gc = {
-    automatic = lib.mkDefault true;
-    options = lib.mkDefault "--delete-older-than 1w";
+    user = "root";
+    automatic = lib.mkForce true;
+    options = lib.mkForce (gcList.week);
   };
 
   # Manual optimise storage: nix-store --optimise

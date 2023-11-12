@@ -82,14 +82,15 @@ let
     grv       = "git remote -v";
     gb        = "git branch";
     gbl       = "git branch --list";
-    gp        = "git push --set-upstream";
+    gp        = "git push";
+    gpu       = "git push --set-upstream";
     gl        = "git log";
     glg       = "git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --branches";
     gd        = "git diff";
     grs       = "git reset";
     grss      = "git reset --soft";
     grsh      = "git reset --hard";
-    gpu       = "git pull";
+    gpl       = "git pull";
 
     gq        = "ghq";
     gqg       = "ghq get";
@@ -103,6 +104,7 @@ let
     d         = "cd ..";
     v         = "vim";
     nv        = "nvim";
+    nvv       = "nvim .";
     vd        = "neovide";
     p         = "py *.py";
     t         = "tmux";
@@ -161,6 +163,12 @@ in
     };
     bash = {
       enable = true; 
+    };
+    autojump = {
+      enable = true;
+      enableBashIntegration = true;
+      enableFishIntegration = true;
+      enableZshIntegration = true;
     };
   };
 }

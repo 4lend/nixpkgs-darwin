@@ -2,7 +2,7 @@
 
 let
   packages = with pkgs; [
-    # javaCup  dbus_java  maven  glib  lua  xdg-desktop-portal  xdg-desktop-portal-wlr xdg-desktop-portal-gnome  dbus  nodePackages.npm  nodePackages_latest.pnpm  nodePackages_latest.npm-check-updates  yarn  yarn2nix  twitterBootstrap  nim  jq  nodejs  apacheHttpd  php  cachix  direnv  nix-direnv  ruby_3_2  yajl  mysql  mysql-workbench  dbeaver  
+    # javaCup  dbus_java  maven  glib  lua  xdg-desktop-portal  xdg-desktop-portal-wlr xdg-desktop-portal-gnome  dbus  nodePackages.npm  nodePackages_latest.pnpm  nodePackages_latest.npm-check-updates  yarn  yarn2nix  twitterBootstrap  nim  jq  nodejs  apacheHttpd  php  cachix  direnv  nix-direnv  ruby_3_2  yajl    
 
     # graphqlmap
     # json_c
@@ -44,13 +44,6 @@ let
     # p7zip
     # fuse-7z-ng
     # tmuxinator # Manage complex tmux sessions easily
-
-    # # python
-    # python311Packages.dbus-python  
-    # python310Packages.urllib3
-    # python311Full
-    # python311Packages.pip
-    # pipx  # Install and run Python applications in isolated environments
 
     # # an
     # # hakuneko
@@ -147,13 +140,15 @@ let
     # termusic
     # yewtube
 
-    # # terminal
-    # ghq
+    # terminal
+    ghq
+
     # cmatrix
     # tig
     # lazygit
     # git-crypt
     # gitkraken
+
     # smartgithg
     # gh
     # glab
@@ -165,6 +160,7 @@ let
     # deer
     # # pistol
     # exa
+    eza
     # terminal-typeracer
     # ttyper
     # internetarchive
@@ -174,7 +170,7 @@ let
     # neovide
     # z-lua
     # peco
-    # autojump
+    autojump
     # pazi
     # fasd
     # yank
@@ -182,7 +178,7 @@ let
     # xclip
     # mov-cli
     # vifm
-    # wget
+    wget
     # pinentry  # GnuPG’s interface to passphrase input | need by gnupg / gpg generate keys
     # bro
     # cheat  # Create and view interactive cheatsheets on the command-line
@@ -456,26 +452,55 @@ let
   # ];
 
   # php = with pkgs; [
-  #   php
   #   phpunit
   #   phpactor
-  #   php82
+  #   # php
+  #   # php82
   # ];
+
+  language = (with pkgs; [
+    maven
+    java-language-server
+    jdk
+    julia-bin
+    python39Full
+    
+    dbus
+    yarn
+    yarn2nix
+    nim
+    jq
+    nodejs
+    apacheHttpd
+    cachix
+    direnv
+    nix-direnv
+    # mysql  
+    # mariadb
+  ]) ++ (with pkgs.nodePackages_latest; [
+    pnpm
+    npm-check-updates
+  ]) ++ (with pkgs.python311Packages; [
+    pip
+    dbus-python
+    urllib3
+  ]) ++ (with pkgs.luajitPackages; [
+    luarocks
+  ]) ++ (with pkgs.php83Packages; [
+    composer
+  ]);
+
 in
 {
   nixpkgs.config = { 
     allowUnfree = true; 
-    # packageOverrides = pkgs: {
-    #   nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
-    #     inherit pkgs;
-    #   };
-    # };
   };
   nixpkgs.config.permittedInsecurePackages = [
     "electron-12.2.3"  # etcher
     "python-2.7.18.6"
   ];
-  home.packages = packages;
+  home.packages = packages ++ language;
+
   # home.packages = packages ++ xfcePkgs ++ gnomeExtension;
   # nixpkgs.config.packageOverrides = pkgs: {
   #   nur = pkgs.nur.repos.congee.sncli.pkgs;
