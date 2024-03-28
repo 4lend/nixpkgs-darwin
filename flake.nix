@@ -101,10 +101,13 @@
           ./home/git.nix
           ./home/helix.nix
           ./home/kitty.nix
+          ./home/lf.nix
+          ./home/mpv.nix
+          ./home/neovim
           ./home/packages.nix
+          # ./home/ranger.nix
           ./home/shells.nix
           ./home/tmux.nix
-          # ./home/neovim.nix
         ];
       };
 
@@ -113,7 +116,7 @@
 
       darwinConfigurations = rec {
         ${primaryUserInfo.fullname} = lib.darwinSystem {
-          system = system.x86_64-darwin;
+          system = system.aarch64-darwin;
           modules = randomModules ++ [
             home-manager.darwinModules.home-manager
             {

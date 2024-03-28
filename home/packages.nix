@@ -2,153 +2,15 @@
 
 let
   packages = with pkgs; [
-    # javaCup  dbus_java  maven  glib  lua  xdg-desktop-portal  xdg-desktop-portal-wlr xdg-desktop-portal-gnome  dbus  nodePackages.npm  nodePackages_latest.pnpm  nodePackages_latest.npm-check-updates  yarn  yarn2nix  twitterBootstrap  nim  jq  nodejs  apacheHttpd  php  cachix  direnv  nix-direnv  ruby_3_2  yajl    
-
-    # graphqlmap
-    # json_c
-    # jsoncpp
-    # # dotnet-runtime
-
-    # # color picker
-    # deepin.deepin-picker
-    # xcolor
-    # eyedropper
-    # wl-color-picker
-    # colorpicker
-
-    # # # keyboard
-    # # bucklespring
-
-    # apktool
-    # ascii
-    # atool
-    # audacious
-    # bat
-    # cargo
-    # dbus
-    # electron
-    # exfat
-    # font-manager
-    # gnupg
-    # gparted
-    # veracrypt
-    # input-remapper
-    # kitty-themes
-    # pcmanfm
-    # # plank
-    # subdl
-    # trash-cli
-    # ueberzug
-    # xorg.xkill
-    # # killall
-    # p7zip
-    # fuse-7z-ng
-    # tmuxinator # Manage complex tmux sessions easily
-
-    # # an
-    # # hakuneko
-    # yacreader
-    # # anime-downloader
-    # # anup  # An anime tracker for AniList featuring a TUI
-    # # adl  # popcorn anime-downloader + trackma wrapper
-    # filebot
-    # # nhentai
-    # # HentaiAtHome
-
-    # # share
-    # opendrop
-    # owl  # An open Apple Wireless Direct Link (AWDL) implementation written in C
-
-    # # social
-    # discord
-    # # whatsapp-for-linux
-    # mailspring
-    # # thunderbird
-    # headset
-    # giara
-    # # slack
-    # tdesktop
-    # # weechat
-    # element-web
-    # element-desktop
-    # ferdium
-    # turses  # A Twitter client for the console
-    # # cawbird
-    # # franz
-    # # twitter-archive https://github.com/jarulsamy/Twitter-Archive
-    # # python310Packages.tweepy
-    # # python310Packages.charset-normalizer
-    # # python39Packages.charset-normalizer
-    # # python310Packages.urllib3
-    # # python310Packages.tqdm
-    # # python310Packages.python-dotenv
-    # # python310Packages.oauthlib
-    # # python310Packages.idna
-    # # python310Packages.certifi
-    # # python310Packages.requests
-    # # python310Packages.requests-oauthlib
-    # haxor-news
-    # circumflex
-
-    # # audio
-    # wireplumber
-    # easyeffects
-    # pulseeffects-legacy
-    # pipewire
-    # ninja
-    # ffmpeg
-    # freac  boca
-
-    # # archiver
-    # archiver
-    # xarchiver
-    # fsarchiver
-    # zip
-    # unrar
-    # p7zip
-    # unzip
-
-    # # network
-    # tor
-    # dnscrypt-proxy2
-    # doggo
-    # openssl
-    # linux-wifi-hotspot
-    # protonvpn-cli
-    # protonvpn-gui
-    # python310Packages.protonvpn-nm-lib
-    # speedtest-cli
-    # firewalld
-    # # busybox
-    # dig
-    # netdata
-
-    # # media player
-    # cmus
-    # # cmusfm  # Last.fm and Libre.fm standalone scrobbler for the cmus music player
-    # cava
-    # streamlink
-    # python310Packages.deemix  
-    # python310Packages.deezer-python  
-    # # nuclear
-    # spotify
-    # spotify-qt
-    # spotify-tui
-    # spotifyd
-    # spotify-player
-    # spotify-cli-linux
-    # termusic
-    # yewtube
 
     # terminal
     ghq
-
-    # cmatrix
-    # tig
-    # lazygit
-    # git-crypt
-    # gitkraken
-
+    tmuxinator # Manage complex tmux sessions easily
+    cmatrix
+    tig
+    lazygit
+    git-crypt
+    gitkraken
     # smartgithg
     # gh
     # glab
@@ -156,7 +18,7 @@ let
     # # gitlab-ee
     # # gitlab-shell
     # # gitlab-pages
-    # ranger  findutils  mlocate  
+    ranger  # findutils  mlocate  
     # deer
     # # pistol
     # exa
@@ -204,22 +66,6 @@ let
     hyfetch
     pridefetch
 
-    # # text editor
-    # geany
-    # vscode
-    # sublime4
-    # texlive.combined.scheme-full
-    # texmaker
-    # texstudio
-    # # engine
-    # godot
-    # # godot_4 
-    # godot-server
-    # godot-headless
-    # godot-export-templates
-    # gdtoolkit  # Independent set of tools for working with Godot's GDScript - parser, linter and formatter
-    # pixelorama  # A free & open-source 2D sprite editor, made with the Godot Engine!
-
     # nix
     nix
     nix-index
@@ -230,24 +76,11 @@ let
     nix-prefetch-scripts
     nix-prefetch-docker
 
-    # # browser
-    # firefox
-    # librewolf
-    # brave
-    # tor-browser-bundle-bin
-    # google-chrome
-    # microsoft-edge
-    # opera
-    # chromium
-    # tvbrowser
-
-    # # downloader
-    # motrix
-    # # qbittorrent
-    # # webtorrent_desktop  # Streaming torrent app for Mac, Windows, and Linux
-    # yt-dlp
-    # # youtube-dl 
-    # ytmdl
+    # Downloader
+    # webtorrent_desktop  # Streaming torrent app for Mac, Windows, and Linux
+    yt-dlp
+    ytmdl
+    gdown
     # youtube-music
     # youtube-tui
     # httpie
@@ -259,8 +92,6 @@ let
     # downonspot  # A spotify downloader writter in rust
     # spotdl  # Download your Spotify playlists and songs along with album art and metadata
     # popcorntime
-    # ariang
-    # gdown
     # lgogdownloader
     # megacmd
 

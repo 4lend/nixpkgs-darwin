@@ -14,7 +14,7 @@
     };
 
     taps = [
-      "homebrew/cask"
+      # "homebrew/cask"
       "homebrew/cask-fonts"
       "homebrew/services"
       "homebrew/cask-versions"
@@ -31,21 +31,36 @@
     # `brew install --cask`
     # TODO Feel free to add your favorite apps here.
     casks = [
-      "sublime-text"
+      ## Browser
+      "firefox"
       "brave-browser"
-      "disk-drill"
-      "free-download-manager"
-      "kitty"
-      "mounty"
-      "mpv"
-      "obsidian"
-      "xdm"
       "google-chrome"
-      "dash"
-      # "fbreader"
-      "send-anywhere"
+      ## Downloader
+      "free-download-manager"
+      "xdm"
+      ## Terminal
       "alacritty"
+      "kitty"
+      "wezterm"
+      ## Chat
+      "whatsapp"
+      "telegram"
+      ## Text Editor & Notes
+      "visual-studio-code"
+      "fleet"
+      "sublime-text"
+      "obsidian"
+      "notion"
+      ## Media
+      "mpv"
+      ## Others
+      "karabiner-elements"
+      "mounty"
+      "dash"
+      "fbreader"
+      "send-anywhere"
       "google-drive"
+      ## Failed Build
     ];
   };
 }
