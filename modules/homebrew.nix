@@ -33,8 +33,9 @@
     casks = [
       ## Browser
       "firefox"
-      "brave-browser"
+      # "brave-browser"
       "google-chrome"
+      "opera"
       ## Downloader
       "free-download-manager"
       "xdm"
@@ -53,11 +54,12 @@
       "notion"
       ## Media
       "mpv"
+      "digikam"
       ## Others
       "karabiner-elements"
       "mounty"
-      "dash"
-      "fbreader"
+      # "dash"
+      # "fbreader"
       "send-anywhere"
       "google-drive"
       ## Failed Build

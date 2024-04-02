@@ -97,6 +97,7 @@ in
         oceanic-material
         dracula-nvim
         material-nvim
+        rose-pine
         # awesome-vim-colorschemes
         # papercolor-theme
         aurora

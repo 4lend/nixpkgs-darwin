@@ -155,7 +155,7 @@ in
     };
     zsh = {
       enable = true;
-      enableAutosuggestions = true; 
+      autosuggestion.enable = true; 
       enableCompletion = true; 
       # enableSyntaxHighlighting = true; 
       historySubstringSearch.enable = true; 

@@ -63,10 +63,10 @@
   outputs = { self, nixpkgs, darwin, home-manager, ... }@inputs:
     let
       system = {
-        x86_64-linux = "x86_64-linux";
-        x86_64-darwin = "x86_64-darwin";
-        aarch64-darwin = "aarch64-darwin";
-        aarch64-linux = "aarch64-linux";
+        linux64 = "x86_64-linux";
+        linuxArm = "aarch64-linux";
+        mac64 = "x86_64-darwin";
+        macArm = "aarch64-darwin";
       };
 
       primaryUserInfo = rec {
@@ -81,7 +81,6 @@
         };
       };
 
-      homeManagerStateVersion = "23.05";
       lib = darwin.lib;
 
       randomModules = [
@@ -105,27 +104,38 @@
           ./home/mpv.nix
           ./home/neovim
           ./home/packages.nix
-          # ./home/ranger.nix
+          ./home/ranger.nix
           ./home/shells.nix
           ./home/tmux.nix
+          ./home/yt-dlp.nix
         ];
       };
+
+      shellConfig = import ./home/shells.nix;
+      fishConfig = shellConfig.fishConfig;
+      shellAliases = shellConfig.shellAliases;
+
 
     in
     {
 
       darwinConfigurations = rec {
         ${primaryUserInfo.fullname} = lib.darwinSystem {
-          system = system.aarch64-darwin;
+          system = system.mac64;
           modules = randomModules ++ [
             home-manager.darwinModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.extraSpecialArgs = inputs;
+              # home-manager.extraSpecialArgs = { inherit fishConfig shellAliases; };
               home-manager.users.${primaryUserInfo.fullname} = homeManagerModules;
             }
           ];
+          # activationScript = ''
+          #   sudo dscl . -create /Users/$USER UserShell /etc/profiles/per-user/alfurqani/bin/fish
+          #   echo "Default shell changed to /etc/profiles/per-user/alfurqani/bin/fish
+          # '';
         };
         # nix code formatter
         # TODO also change this line to "aarch64-darwin" if you are using Apple Silicon
