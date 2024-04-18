@@ -79,6 +79,8 @@ in
       bind-key b new-window 
       bind-key i split-window -h
       bind-key h split-window -v
+      bind-key k kill-pane
+      bind-key K kill-window
                                                                                
       # bind -t vi-copy y copy-pipe 'xclip -in -selection clipboard'
                                                                                

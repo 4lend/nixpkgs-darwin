@@ -19,6 +19,7 @@ let
     # # gitlab-shell
     # # gitlab-pages
     ranger  # findutils  mlocate  
+    lf
     # deer
     # # pistol
     eza
@@ -39,7 +40,7 @@ let
     # xsel
     # xclip
     # mov-cli
-    # vifm
+    vifm
     wget
     # pinentry  # GnuPG’s interface to passphrase input | need by gnupg / gpg generate keys
     # bro
@@ -51,6 +52,7 @@ let
     # fltrdr  # A TUI text reader for the terminal
     # pssh
     # cowsay
+    fontconfig
 
     # terminal display system information
     dwt1-shell-color-scripts
@@ -95,45 +97,46 @@ let
     # megacmd
   ];
 
-language = (with pkgs; [
-  python39Full
-  dbus
-  yarn
-  yarn2nix
-  nim
-  jq
-  nodejs
-  apacheHttpd
-  cachix
-  direnv
-  nix-direnv
-]) ++ (with pkgs.nodePackages_latest; [
-  pnpm
-  npm-check-updates
-]) ++ (with pkgs.python311Packages; [
-  pip
-  dbus-python
-  urllib3
-]) ++ (with pkgs.luajitPackages; [
-  luarocks
-]) ++ (with pkgs.nodePackages; [
-  typescript-language-server
-  pyright
-]) ++ (with pkgs; [
-  nixfmt
-  sumneko-lua-language-server
-  lua51Packages.lua-lsp
-  sumneko-lua-language-server
-  stylua
-  lua-language-server
-  python311Packages.pynvim
-  python310Packages.pynvim
-  ueberzug
-  ripgrep
-  ripgrep-all
-  vgrep
-  gcc
-]);
+  language = (with pkgs; [
+    python39Full
+    dbus
+    yarn
+    yarn2nix
+    nim
+    jq
+    nodejs
+    apacheHttpd
+    cachix
+    direnv
+    nix-direnv
+  ]) ++ (with pkgs.nodePackages_latest; [
+    pnpm
+    npm-check-updates
+  ]) ++ (with pkgs.python311Packages; [
+    pip
+    dbus-python
+    urllib3
+  ]) ++ (with pkgs.luajitPackages; [
+    luarocks
+  ]) ++ (with pkgs.nodePackages; [
+    typescript-language-server
+    pyright
+  ]) ++ (with pkgs; [
+    nixfmt-rfc-style
+    nixpkgs-fmt
+    sumneko-lua-language-server
+    lua51Packages.lua-lsp
+    sumneko-lua-language-server
+    stylua
+    lua-language-server
+    python311Packages.pynvim
+    python310Packages.pynvim
+    ueberzug
+    ripgrep
+    ripgrep-all
+    vgrep
+    gcc
+  ]);
 
 in
 {

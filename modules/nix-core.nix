@@ -19,6 +19,7 @@ in
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
   nix.package = pkgs.nix;
+  # nix.package = pkgs.nixUnstable;
   programs.nix-index.enable = true;
 
   # do garbage collection weekly to keep disk usage low

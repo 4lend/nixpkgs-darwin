@@ -3,7 +3,6 @@
 {
   programs.alacritty = 
   {
-    enable = true;
     settings = {
       dynamic_padding = true;
       selection.save_to_clipboard = true;
@@ -20,7 +19,7 @@
       font = {
         size = 12;
         normal = { 
-          family = "JetBrainsMono NL";
+          family = "JetBrainsMono Nerd Font";
           style = "Regular";
         };
         # bold = { 

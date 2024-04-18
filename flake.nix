@@ -74,7 +74,7 @@
         fullname = "alfurqani";
         email = "syifa.alfurqoni@gmail.com";
         nixConfigDirectory =
-          "/Users/alfurqani/.config/nixpkgs/nix-darwin-kickstarter/minimal";
+          "/Users/alfurqani/.config";
         within = {
           gpg.enable = true;
           pass.enable = true;
@@ -98,9 +98,7 @@
           ./home/aria2.nix
           ./home/fzf.nix
           ./home/git.nix
-          ./home/helix.nix
           ./home/kitty.nix
-          ./home/lf.nix
           ./home/mpv.nix
           ./home/neovim
           ./home/packages.nix
@@ -115,10 +113,10 @@
       fishConfig = shellConfig.fishConfig;
       shellAliases = shellConfig.shellAliases;
 
+      flakePath = builtins.toString ./.;
 
     in
     {
-
       darwinConfigurations = rec {
         ${primaryUserInfo.fullname} = lib.darwinSystem {
           system = system.mac64;
@@ -137,11 +135,9 @@
           #   echo "Default shell changed to /etc/profiles/per-user/alfurqani/bin/fish
           # '';
         };
-        # nix code formatter
         # TODO also change this line to "aarch64-darwin" if you are using Apple Silicon
         formatter.x86_64-darwin =
           nixpkgs.legacyPackages.x86_64-darwin.alejandra;
-
         # darwinModules = {
         #   system = import ./system/darwin-configuration.nix;
         # };

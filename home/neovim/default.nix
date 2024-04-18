@@ -134,6 +134,7 @@ in
         vim-floaterm
         nvim-treesitter-parsers.yaml
         telescope-live-grep-args-nvim
+        vim-ghost
         ### vimfile ###
         # { plugin = Vundle-vim;
         # config = '' 

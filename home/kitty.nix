@@ -4,9 +4,7 @@
   programs.kitty = {
     theme = "Nightfox"; # Everforest Dark Soft - Medium - Hard, Forest Night, Nord, Dracula, One Dark, One Half Dark, 
     font = {
-      name = "JetBrainsMonoNL NF Light"; # JetBrainsMono NFM";  # "JetBrainsMonoNL Nerd Font";
-      # name = "JetBrainsMonoNL NF Thin";  # JetBrainsMono NFM";  # "JetBrainsMonoNL Nerd Font";
-      # Thin, Light, Medium, Bold
+      name = "JetBrainsMono Nerd Font";
       size = 12.0;
     };
     extraConfig = ''

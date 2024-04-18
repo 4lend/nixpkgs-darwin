@@ -55,12 +55,15 @@
       ## Media
       "mpv"
       "digikam"
+      "figma"
+      "canva"
       ## Others
       "karabiner-elements"
       "mounty"
       # "dash"
       # "fbreader"
       "send-anywhere"
+      "android-file-transfer"
       "google-drive"
       ## Failed Build
     ];
