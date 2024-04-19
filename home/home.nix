@@ -13,7 +13,7 @@ let
       pass.enable = true;
     };
   };
-  homeManagerStateVersion = "24.05";
+  homeManagerStateVersion = "23.11";  # 23.11 / 24.05
   flakePath = builtins.toString ./.;
   localBin = "$HOME/.local/bin";
 

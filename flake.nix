@@ -13,17 +13,18 @@
     experimental-features = [ "nix-command" "flakes" ];
 
     substituters = [
-      # Replace official cache with a mirror located in China
-      #
-      # Feel free to remove this line if you are not in China
-      # "https://mirrors.ustc.edu.cn/nix-channels/store"
       "https://cache.nixos.org"
+      "https://cache.komunix.org"
+      "https://cachix.org"
+      # "https://mirrors.ustc.edu.cn/nix-channels/store"  # china mirror
+      # "https://mirrors.tuna.tsinghua.edu.cn"
     ];
   };
 
   # This is the standard format for flake.nix. `inputs` are the dependencies of the flake,
   # Each item in `inputs` will be passed as a parameter to the `outputs` function after being pulled and built.
   inputs = {
+    # nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-23.11-darwin";
     nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     darwin = {
       url = "github:lnl7/nix-darwin";
@@ -31,6 +32,7 @@
     };
     # Home manager
     home-manager = {
+      # url = "github:nix-community/home-manager/release-23.11";
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };

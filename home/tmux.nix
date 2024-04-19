@@ -40,7 +40,7 @@ in
       '';
       }
       vim-tmux-navigator
-      urlview
+      # urlview
       sysstat
       sidebar
       copy-toolkit

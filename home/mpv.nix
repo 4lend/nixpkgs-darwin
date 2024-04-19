@@ -2,7 +2,6 @@
 
 {
   programs.mpv = {
-    enable = true;
     config = {
       # sub-auto = "all";
       sub-font = "JetBrainsMonoNL Nerd Font";

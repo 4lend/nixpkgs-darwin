@@ -80,7 +80,7 @@ let
 
     # Downloader
     # webtorrent_desktop  # Streaming torrent app for Mac, Windows, and Linux
-    ytmdl
+    # ytmdl
     gdown
     # youtube-music
     # youtube-tui
@@ -122,7 +122,7 @@ let
     typescript-language-server
     pyright
   ]) ++ (with pkgs; [
-    nixfmt-rfc-style
+    # nixfmt-rfc-style
     nixpkgs-fmt
     sumneko-lua-language-server
     lua51Packages.lua-lsp
