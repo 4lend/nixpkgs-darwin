@@ -23,8 +23,8 @@ in
     configFile = {
       "./lf".source = ./configs/lf;
       "./dash".source = ./configs/dash;
-      # "./vifm".source = ./configs/vifm;
-      # "./wezterm".source = ./configs/wezterm;
+      "./vifm".source = ./configs/vifm;
+      "./wezterm".source = ./configs/wezterm;
     };
     # dataHome = "$HOME/.local/share";
     dataFile = {

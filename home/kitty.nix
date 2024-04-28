@@ -2,10 +2,11 @@
 
 {
   programs.kitty = {
+    enable = true;
     theme = "Nightfox"; # Everforest Dark Soft - Medium - Hard, Forest Night, Nord, Dracula, One Dark, One Half Dark, 
     font = {
       name = "JetBrainsMono Nerd Font";
-      size = 12.0;
+      size = 14.0;
     };
     extraConfig = ''
       cursor_shape block

@@ -57,7 +57,7 @@ let
     ngit = "nix-prefetch-url --unpack";
 
     tls = "tmux list-sessions";
-    tkls = "tmux kill-session -t";
+    tkls = "tmux kill-session";
     kat = "pkill -f tmux";
     tks = "tmux kill-server";
     tat = "tmux attach";

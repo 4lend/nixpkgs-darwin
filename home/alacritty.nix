@@ -3,10 +3,9 @@
 {
   programs.alacritty = 
   {
+    enable = true;
     settings = {
-      dynamic_padding = true;
       selection.save_to_clipboard = true;
-      startup_mode = "Fullscreen";  # Windowed, Maximized, Fullscreen
       window = {
         startup_mode = "Fullscreen";  # Windowed, Maximized, Fullscreen
         opacity = 1.00;
@@ -17,7 +16,7 @@
         };
       };
       font = {
-        size = 12;
+        size = 14;
         normal = { 
           family = "JetBrainsMono Nerd Font";
           style = "Regular";

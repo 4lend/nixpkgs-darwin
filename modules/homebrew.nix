@@ -36,6 +36,7 @@
       # "brave-browser"
       "google-chrome"
       "opera"
+      "tor-browser"
       ## Downloader
       "free-download-manager"
       "xdm"
@@ -43,6 +44,7 @@
       "alacritty"
       "kitty"
       "wezterm"
+      "warp"
       ## Chat
       "whatsapp"
       "telegram"
@@ -54,10 +56,12 @@
       "notion"
       ## Media
       "mpv"
+      "vlc"
       "digikam"
       "figma"
       "canva"
       ## Others
+      "bitwarden"
       "karabiner-elements"
       "mounty"
       # "dash"

@@ -18,7 +18,7 @@ in
     shortcut = "a";
     resizeAmount = 10;
     # aggressiveAmount = true;
-    terminal = "tmux-256color";
+    terminal = "tmux-256color";  # "tmux-256color";
     plugins = with pkgs.tmuxPlugins; [
       jump
       battery
@@ -40,7 +40,7 @@ in
       '';
       }
       vim-tmux-navigator
-      # urlview
+      urlview
       sysstat
       sidebar
       copy-toolkit
@@ -52,8 +52,7 @@ in
       online-status
     ];
     extraConfig = ''
-      # set -g default-terminal "xterm-256color"
-      # export TERM=xterm-256color
+      set -g default-terminal "xterm-256color"
       set -g default-command  /run/current-system/sw/bin/fish
       set -g default-shell /run/current-system/sw/bin/fish
       set-option -g automatic-rename-format ""
@@ -81,6 +80,12 @@ in
       bind-key h split-window -v
       bind-key k kill-pane
       bind-key K kill-window
+      bind-key - kill-pane
+
+      # switch window
+      bind-key n next-window
+      bind-key p previous-window
+      bind-key b last-window
                                                                                
       # bind -t vi-copy y copy-pipe 'xclip -in -selection clipboard'
                                                                                

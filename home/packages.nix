@@ -3,6 +3,11 @@
 let
   packages = with pkgs; [
 
+    # technical
+    android-tools
+    adbfs-rootless
+    # adb-sync  # Broken
+
     # terminal
     ghq
     tmuxinator # Manage complex tmux sessions easily
@@ -11,6 +16,7 @@ let
     lazygit
     git-crypt
     gitkraken
+    cmus
     # smartgithg
     # gh
     # glab
