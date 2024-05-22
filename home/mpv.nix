@@ -5,7 +5,7 @@
     enable = true;
     config = {
       # sub-auto = "all";
-      sub-font = "JetBrainsMonoNL Nerd Font";
+      sub-font = "JetBrainsMono Nerd Font";
       sub-font-size = 30;  # 38;
       sub-color = "#FFFE25";  # yellow  # #FFFFFF - white
 	  # sub-border-color = "#000000";  # black  # #202020
@@ -15,9 +15,10 @@
       sid = 1;
       sub-auto = "fuzzy";
       window = "fullscreen";
+      # window = "maximized";
       speed = 1.50;
       playback = "save-position-on-quit";
-	    fullscreen = "yes";
+	    fullscreen = "no";
 	    save-position-on-quit = "yes";
 	    sub-ass-override = "force";
       autofit = "100%";
