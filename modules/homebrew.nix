@@ -23,9 +23,7 @@
     # `brew install`
     # TODO Feel free to add your favorite apps here.
     brews = [
-      # "aria2"  # download tool
       "mariadb"
-      # "mysql"
     ];
 
     # `brew install --cask`
@@ -36,35 +34,26 @@
       # "brave-browser"
       "google-chrome"
       "opera"
-      "tor-browser"
       ## Downloader
       "free-download-manager"
-      "xdm"
       ## Terminal
       "alacritty"
       "kitty"
       "wezterm"
-      "warp"
       ## Chat
       "whatsapp"
       "telegram"
       ## Text Editor & Notes
       "visual-studio-code"
-      "fleet"
-      "sublime-text"
-      "obsidian"
       "notion"
       "libreoffice"
-      "onlyoffice"
       ## Media
       "mpv"
       "vlc"
       "digikam"
       "figma"
       "canva"
-      "yt-music"
       ## Others
-      "bitwarden"
       "karabiner-elements"
       "mounty"
       "balenaetcher"

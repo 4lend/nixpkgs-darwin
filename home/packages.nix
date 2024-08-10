@@ -126,7 +126,6 @@ let
     luarocks
   ]) ++ (with pkgs.nodePackages; [
     typescript-language-server
-    pyright
   ]) ++ (with pkgs; [
     # nixfmt-rfc-style
     nixpkgs-fmt

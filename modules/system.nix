@@ -3,8 +3,8 @@
 #    https://daiderd.com/nix-darwin/manual/index.html#sec-options
 {
   fonts = {
-    fontDir.enable = true;
-    fonts = with pkgs; [
+    # fontDir.enable = true;
+    packages  = with pkgs; [
       (nerdfonts.override { fonts = [ "JetBrainsMono" "CodeNewRoman" "SpaceMono" "ComicShannsMono" "ProFont" "FiraCode" ]; })
       nerd-font-patcher
       victor-mono

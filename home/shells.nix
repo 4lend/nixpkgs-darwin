@@ -22,6 +22,7 @@ let
     git = "${pkgs.git}/bin/git";
     grep = "${pkgs.ripgrep}/bin/rg";
 
+	  nsi = "./result/sw/bin/darwin-rebuild switch --flake .#hostname";
     nb = "nix build";
     nbs = "sudo nixos-rebuild switch --flake .#alfurqani";
     nbsi = "sudo nixos-rebuild switch --flake .#alfurqani --impure";
