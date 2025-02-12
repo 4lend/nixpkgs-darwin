@@ -48,7 +48,7 @@ in
       prefix-highlight
       extrakto
       sensible
-      resurrect
+      # resurrect
       online-status
     ];
     extraConfig = ''

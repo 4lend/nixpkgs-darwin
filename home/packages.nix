@@ -108,7 +108,7 @@ let
     dbus
     yarn
     yarn2nix
-    nim
+    # nim
     jq
     nodejs
     apacheHttpd
@@ -130,7 +130,7 @@ let
     # nixfmt-rfc-style
     nixpkgs-fmt
     sumneko-lua-language-server
-    lua51Packages.lua-lsp
+    # lua51Packages.lua-lsp
     sumneko-lua-language-server
     stylua
     lua-language-server

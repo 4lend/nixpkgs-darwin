@@ -1,3 +1,7 @@
+Tuxera NTFS
+565D5FF5-A90D-4BE7-89D1-1DFD022186E9
+
+
 # Nix Darwin Kickstarter - Minimal
 
 A minimal configuration that only contains the necessary configuration to start using nix-darwin, and can be safely deployed to your own system.

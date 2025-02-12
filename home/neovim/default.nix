@@ -118,7 +118,6 @@ in
         # nvim-treesitter-parsers.latex
         cmp-latex-symbols 
         latex-box
-        compe-latex-symbols
         # codeium-vim
         vim-numbertoggle
         vim-togglelist

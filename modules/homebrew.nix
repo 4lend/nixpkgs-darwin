@@ -23,7 +23,7 @@
     # `brew install`
     # TODO Feel free to add your favorite apps here.
     brews = [
-      "mariadb"
+      # "mariadb"
     ];
 
     # `brew install --cask`
@@ -31,8 +31,7 @@
     casks = [
       ## Browser
       "firefox"
-      # "brave-browser"
-      "google-chrome"
+      "brave-browser"
       "opera"
       ## Downloader
       "free-download-manager"
@@ -49,7 +48,7 @@
       "libreoffice"
       ## Media
       "mpv"
-      "vlc"
+      # "vlc"
       "digikam"
       "figma"
       "canva"
@@ -59,7 +58,7 @@
       "balenaetcher"
       # "dash"
       # "fbreader"
-      "send-anywhere"
+      # "send-anywhere"
       "android-file-transfer"
       "google-drive"
       ## Failed Build

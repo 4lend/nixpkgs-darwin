@@ -14,7 +14,7 @@
 
     substituters = [
       "https://cache.nixos.org"
-      "https://cache.komunix.org"
+      # "https://cache.komunix.org"
       # "https://cachix.org"
       # "https://mirrors.ustc.edu.cn/nix-channels/store"  # china mirror
       # "https://mirrors.tuna.tsinghua.edu.cn"

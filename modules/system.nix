@@ -5,8 +5,14 @@
   fonts = {
     # fontDir.enable = true;
     packages  = with pkgs; [
-      (nerdfonts.override { fonts = [ "JetBrainsMono" "CodeNewRoman" "SpaceMono" "ComicShannsMono" "ProFont" "FiraCode" ]; })
-      nerd-font-patcher
+      # (nerdfonts.override { fonts = [ "JetBrainsMono" "CodeNewRoman" "SpaceMono" "ComicShannsMono" "ProFont" "FiraCode" ]; })
+      nerd-fonts.jetbrains-mono
+      # nerd-fonts.CodeNewRoman
+      # nerd-fonts.SpaceMono
+      # nerd-fonts.ComicShannsMono
+      # nerd-fonts.ProFont
+      # nerd-fonts.FiraCode
+      # nerd-font-patcher
       victor-mono
       comic-mono
       comic-neue
@@ -25,10 +31,14 @@
       lexend
       overpass
     ];
+    # ]) ++ (with pkgs.nerd-fonts; [
+    #   jetbrains-mono
+    # ]);
   };
 
   system = {
     # activationScripts are executed every time you boot the system or run `nixos-rebuild` / `darwin-rebuild`.
+    stateVersion = 6;
     activationScripts = {
       postUserActivation.text = ''
         # activateSettings -u will reload the settings from the database and apply them to the current session,
