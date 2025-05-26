@@ -3,7 +3,7 @@ local wo = vim.wo
 local fn = vim.fn
 local c = vim.cmd
 
--- c "colorscheme nightfox"
+-- c "colorscheme nightfx"
 c "colorscheme kanagawa-dragon"
 c "au InsertEnter * set nornu"
 c "au InsertLeave * set rnu"

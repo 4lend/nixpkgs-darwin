@@ -35,6 +35,7 @@
       "opera"
       ## Downloader
       "free-download-manager"
+      "qbittorrent"
       ## Terminal
       "alacritty"
       "kitty"
@@ -47,7 +48,7 @@
       "notion"
       "libreoffice"
       ## Media
-      "mpv"
+      # "mpv"
       # "vlc"
       "digikam"
       "figma"

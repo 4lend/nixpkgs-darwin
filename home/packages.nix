@@ -35,7 +35,7 @@ let
     # internetarchive
     # vim
     # spacevim
-    # duf
+    duf
     # neovide
     # z-lua
     # peco
@@ -92,7 +92,7 @@ let
     # youtube-tui
     # httpie
     # python310Packages.httpie
-    # instaloader
+    instaloader
     # uget
     # uget-integrator
     # axel 

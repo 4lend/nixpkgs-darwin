@@ -209,12 +209,14 @@ in
         };
         gcloud = {
           format = "[$symbol$active]($style) ";
+        # scan_timeout = 100;
         };
       };
       enableFishIntegration = true;
       enableNushellIntegration = true;
       enableBashIntegration = true;
       enableZshIntegration = true;
+      enableTransience = true;
     };
   };
 }

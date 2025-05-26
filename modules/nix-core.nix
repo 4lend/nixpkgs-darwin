@@ -17,14 +17,14 @@ in
   nixpkgs.config.allowUnfree = true;
 
   # Auto upgrade nix package and the daemon service.
-  services.nix-daemon.enable = true;
+  # services.nix-daemon.enable = true;
   nix.package = pkgs.nix;
   # nix.package = pkgs.nixUnstable;
   programs.nix-index.enable = true;
 
   # do garbage collection weekly to keep disk usage low
   nix.gc = {
-    user = "root";
+    # user = "root";
     automatic = lib.mkForce true;
     options = lib.mkForce (gcList.week);
   };
@@ -32,6 +32,9 @@ in
   # Manual optimise storage: nix-store --optimise
   # https://nixos.org/manual/nix/stable/command-ref/conf-file.html#conf-auto-optimise-store
   nix.optimise.automatic = true;
-  ids.uids.nixbld = 300;
+  ids = {
+    uids.nixbld = 300;
+    gids.nixbld = 30000;
+  };
 
 }
