@@ -1,21 +1,16 @@
 {
   description = "Minimal Nix for macOS configuration";
 
-  ##################################################################################################################
-  # 
   # Want to know Nix in details? Looking for a beginner-friendly tutorial?
   # Check out https://github.com/ryan4yin/nixos-and-flakes-book !
-  # 
-  ##################################################################################################################
 
-  # the nixConfig here only affects the flake itself, not the system configuration!
   nixConfig = {
     experimental-features = [ "nix-command" "flakes" ];
 
     substituters = [
       "https://cache.nixos.org"
-      # "https://cache.komunix.org"
       # "https://cachix.org"
+      # "https://cache.komunix.org"
       # "https://mirrors.ustc.edu.cn/nix-channels/store"  # china mirror
       # "https://mirrors.tuna.tsinghua.edu.cn"
     ];
@@ -24,16 +19,14 @@
   # This is the standard format for flake.nix. `inputs` are the dependencies of the flake,
   # Each item in `inputs` will be passed as a parameter to the `outputs` function after being pulled and built.
   inputs = {
-    # nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-23.11-darwin";
     nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     darwin = {
-      url = "github:lnl7/nix-darwin";
-      inputs.nixpkgs.follows = "nixpkgs-darwin";
+      url = "github:nix-darwin/nix-darwin/nix-darwin-25.05";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     # Home manager
     home-manager = {
-      # url = "github:nix-community/home-manager/release-23.11";
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -89,7 +82,7 @@
         ./modules/nix-core.nix
         ./modules/system.nix
         ./modules/apps.nix
-        ./modules/homebrew.nix
+        # ./modules/homebrew.nix
         ./modules/host-users.nix
       ];
 
@@ -101,7 +94,7 @@
           ./home/fzf.nix
           ./home/git.nix
           ./home/kitty.nix
-          ./home/mpv.nix
+          # ./home/mpv.nix
           ./home/neovim
           ./home/packages.nix
           ./home/ranger.nix
@@ -125,7 +118,8 @@
           modules = randomModules ++ [
             home-manager.darwinModules.home-manager
             {
-              home-manager.useGlobalPkgs = true;
+              # home-manager.useGlobalPkgs = true;
+              home-manager.useGlobalPkgs = false;
               home-manager.useUserPackages = true;
               home-manager.extraSpecialArgs = inputs;
               # home-manager.extraSpecialArgs = { inherit fishConfig shellAliases; };

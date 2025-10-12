@@ -9,6 +9,7 @@
 
 let
   # TODO change this to your hostname & username
+  # hostname = "alfurqani";
   hostname = "4lend";
   username = "alfurqani";
 in

@@ -13,7 +13,7 @@ let
       pass.enable = true;
     };
   };
-  homeManagerStateVersion = "24.05";  # 23.11 / 24.05
+  homeManagerStateVersion = "25.05";  # 23.11 / 24.05
   flakePath = builtins.toString ./.;
   localBin = "$HOME/.local/bin";
 
@@ -25,6 +25,7 @@ in
       "./dash".source = ./configs/dash;
       "./vifm".source = ./configs/vifm;
       "./wezterm".source = ./configs/wezterm;
+      # "./mpv".source = ./configs/mpv;
     };
     # dataHome = "$HOME/.local/share";
     dataFile = {

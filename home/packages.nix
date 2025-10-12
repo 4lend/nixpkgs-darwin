@@ -6,6 +6,7 @@ let
     # technical
     android-tools
     adbfs-rootless
+    pay-respects
     # adb-sync  # Broken
 
     # terminal
@@ -104,7 +105,7 @@ let
   ];
 
   language = (with pkgs; [
-    python39Full
+    # python39Full
     dbus
     yarn
     yarn2nix
@@ -136,7 +137,7 @@ let
     lua-language-server
     python311Packages.pynvim
     python310Packages.pynvim
-    ueberzug
+    # ueberzug
     ripgrep
     ripgrep-all
     vgrep

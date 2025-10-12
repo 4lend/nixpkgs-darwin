@@ -22,6 +22,8 @@
 	    save-position-on-quit = "yes";
 	    sub-ass-override = "force";
       autofit = "100%";
+
+      # includes = [ "./configs/mpv_portable_config"; ]
     };
   };
 }

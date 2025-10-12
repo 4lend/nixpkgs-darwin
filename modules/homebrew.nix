@@ -48,7 +48,7 @@
       "notion"
       "libreoffice"
       ## Media
-      # "mpv"
+      "mpv"
       # "vlc"
       "digikam"
       "figma"
@@ -57,12 +57,8 @@
       "karabiner-elements"
       "mounty"
       "balenaetcher"
-      # "dash"
-      # "fbreader"
-      # "send-anywhere"
       "android-file-transfer"
       "google-drive"
-      ## Failed Build
     ];
   };
 }

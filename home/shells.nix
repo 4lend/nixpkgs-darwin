@@ -154,17 +154,17 @@ in
       enable = true;
       shellAliases = shellAliases;
       shellInit = fishConfig;
-      interactiveShellInit = ''
-        ${pkgs.thefuck}/bin/thefuck --alias | source
-        # Fish color
-        set -U fish_color_command 6CB6EB --bold
-        set -U fish_color_redirection DEB974
-        set -U fish_color_operator DEB974
-        set -U fish_color_end C071D8 --bold
-        set -U fish_color_error EC7279 --bold
-        set -U fish_color_param 6CB6EB
-        set fish_greeting
-      '';
+      # interactiveShellInit = ''
+      #   # ${pkgs.thefuck}/bin/thefuck --alias | source
+      #   # Fish color
+      #   set -U fish_color_command 6CB6EB --bold
+      #   set -U fish_color_redirection DEB974
+      #   set -U fish_color_operator DEB974
+      #   set -U fish_color_end C071D8 --bold
+      #   set -U fish_color_error EC7279 --bold
+      #   set -U fish_color_param 6CB6EB
+      #   set fish_greeting
+      # '';
     };
     nushell = {
       enable = true;
