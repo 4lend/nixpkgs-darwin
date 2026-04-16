@@ -1,0 +1,64 @@
+# ~/.config/lf/lfrc
+# Pengaturan Dasar
+set icons on          # Menampilkan ikon (jika font mendukung)
+set hidden true       # Menampilkan file tersembunyi (seperti 'set show_hidden true' di ranger)
+set scrolloff 10      # Ruang kosong di atas dan bawah saat scroll (seperti 'set scroll_offset 8')
+set info size         # Menampilkan informasi ukuran file
+set dircounts on      # Menampilkan jumlah item direktori
+set dircounts first   # Opsi tambahan untuk menampilkan jumlah direktori
+
+# Pengaturan Preview
+set preview on        # Mengaktifkan panel preview
+# set previewer ~/.config/lf/previewSandbox.sh  # Sandboxing untuk preview (opsi lanjutan :cite[1]:cite[5])
+
+# Pengaturan Warna dan Tampilan
+# set colors lf         # Menggunakan skema warna default lf
+# colors file (~/.config/lf/colors) dapat disesuaikan untuk meniru ranger :cite[1]
+
+# ===================================================================
+# == Key Mapping (Disarankan untuk disesuaikan dengan kebutuhan)
+# ===================================================================
+
+# Navigasi Dasar - sudah menggunakan Vim keys (k, j, h, l, gg, G) secara default
+
+# Operasi File
+map dd trash         # Memindahkan file ke trash :cite[1]
+map dD delete        # Menghapus file secara permanen
+map yy copy          # Menandai file untuk disalin
+map pp paste         # Menempel file yang ditandai
+map <enter> open     # Membuka file/direktori
+
+# Tampilan dan Mode
+map . set hidden!    # Toggle tampilkan file tersembunyi (seperti 'zh' atau 'set show_hidden!') :cite[2]
+map zh set hidden!
+map zI set flushinput! # (Analog untuk 'set flushinput true')
+map zi set preview_images! # Toggle preview gambar (seperti 'set preview_images!')
+map V $$EDITOR $f    # Membuka file dalam editor (contoh: Vim) :cite[10]
+
+# Pencarian
+map / find           # Memulai pencarian
+map n find-next      # Melompat ke hasil pencarian berikutnya
+map N find-prev      # Melompat ke hasil pencarian sebelumnya
+
+# ===================================================================
+# == Integrasi dan Perintah Kustom
+# ===================================================================
+
+# Gunakan rifle (file opener dari ranger) sebagai pembuka default :cite[1]:cite[5]
+# Ekspor variabel environment ini di shell config-mu (mis., .bashrc/.zshrc):
+# export OPENER='rifle'
+# export EDITOR='vim' # Atur editor defaultmu di sini :cite[5]:cite[10]
+
+# Atau, definisikan langsung di lfrc untuk membuka file:
+cmd open ${{ test -d $f && lf -remote "cd $PWD/$f" || rifle "$f" }}
+
+# Perintah untuk membuat direktori (seperti map mkdir)
+cmd mkdir %mkdir $1
+map mk push :mkdir<space>
+
+# Perintah untuk menghapus (Opsional: gunakan 'trash-cli' :cite[1])
+cmd trash %trash-put $fx
+# map DD trash  # Jika ingin menggunakan mapping DD untuk trash
+
+# Auto refresh :cite[1]
+set period 1

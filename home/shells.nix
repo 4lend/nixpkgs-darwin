@@ -18,7 +18,7 @@ let
     la = "exa -1 -g -l --icons -s type -a";
     lt = "exa -1 -g -l --icons -s type -T";
     lat = "exa -1 -g -l --icons -s type -a -T";
-    du = "${pkgs.du-dust}/bin/dust";
+    du = "${pkgs.dust}/bin/dust";
     git = "${pkgs.git}/bin/git";
     grep = "${pkgs.ripgrep}/bin/rg";
 
@@ -138,9 +138,16 @@ let
     gdo = "gdown";
     df = "duf";
 
+    bl = "brew list";
+    bu = "brew uninstall";
+    bi = "brew install";
+
     ud = "udisksctl";
     udm = "udisksctl mount -b";
     udmd = "udisksctl unmount -b";
+
+    dul = "diskutil list";
+    due = "diskutil eject";
 
     sysr = "systemctl reboot";
     syss = "systemctl suspend";

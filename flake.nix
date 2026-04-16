@@ -1,5 +1,5 @@
 {
-  description = "Minimal Nix for macOS configuration";
+  description = "ALiSO Minimal Nix";
 
   # Want to know Nix in details? Looking for a beginner-friendly tutorial?
   # Check out https://github.com/ryan4yin/nixos-and-flakes-book !
@@ -9,8 +9,8 @@
 
     substituters = [
       "https://cache.nixos.org"
-      # "https://cachix.org"
-      # "https://cache.komunix.org"
+      "https://cachix.org"
+      "https://cache.komunix.org"
       # "https://mirrors.ustc.edu.cn/nix-channels/store"  # china mirror
       # "https://mirrors.tuna.tsinghua.edu.cn"
     ];
@@ -19,31 +19,27 @@
   # This is the standard format for flake.nix. `inputs` are the dependencies of the flake,
   # Each item in `inputs` will be passed as a parameter to the `outputs` function after being pulled and built.
   inputs = {
-    nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    lnscrypt-module.url = "github:andreoss/dnscrypt-nixos-module";
+    nixpkgs.url = "github:nixOS/nixpkgs/release-25.11";
+    nixpkgs-darwin.url = "github:nixOS/nixpkgs/nixpkgs-25.11-darwin";
     darwin = {
-      url = "github:nix-darwin/nix-darwin/nix-darwin-25.05";
+      url = "github:nix-darwin/nix-darwin/nix-darwin-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # Home manager
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Flake utilities
     flake-compat = {
       url = "github:edolstra/flake-compat";
       flake = false;
     };
     flake-utils.url = "github:numtide/flake-utils";
-
-    # Homebrew
     homebrew = {
       url = "github:Homebrew/brew";
       flake = false;
     };
-
-    # Other sources
     comma = {
       url = "github:Shopify/comma";
       flake = false;
@@ -77,6 +73,8 @@
       };
 
       lib = darwin.lib;
+
+      brewModules = [ ./modules/homebrew.nix ];
 
       randomModules = [
         ./modules/nix-core.nix
@@ -115,6 +113,7 @@
       darwinConfigurations = rec {
         ${primaryUserInfo.fullname} = lib.darwinSystem {
           system = system.mac64;
+          # modules = inputs.dnscrypt-module.nixosModules.default ++ randomModules ++ [
           modules = randomModules ++ [
             home-manager.darwinModules.home-manager
             {

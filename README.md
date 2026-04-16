@@ -20,7 +20,7 @@ A minimal configuration that only contains the necessary configuration to start 
 	nix build .#darwinConfigurations.hostname.system \
 		--extra-experimental-features 'nix-command flakes'
 
-	./result/sw/bin/darwin-rebuild switch --flake .#hostname
+	sudo ./result/sw/bin/darwin-rebuild switch --flake .#hostname
    ```
 
 To simplify the command, adding the following content by create a `Makefile` in the root of your nix configuration:

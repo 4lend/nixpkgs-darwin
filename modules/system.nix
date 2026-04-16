@@ -30,6 +30,8 @@
       comfortaa
       lexend
       overpass
+
+      google-fonts
     ];
     # ]) ++ (with pkgs.nerd-fonts; [
     #   jetbrains-mono

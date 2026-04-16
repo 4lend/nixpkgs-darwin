@@ -14,6 +14,7 @@ in
 
   # enable flakes globally
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.download-buffer-size = 524288000;
   nixpkgs.config.allowUnfree = true;
 
   # Auto upgrade nix package and the daemon service.

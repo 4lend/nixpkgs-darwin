@@ -60,6 +60,7 @@ let
     # pssh
     # cowsay
     fontconfig
+    google-fonts
 
     # terminal display system information
     dwt1-shell-color-scripts
@@ -86,30 +87,15 @@ let
     nix-prefetch-docker
 
     # Downloader
-    # webtorrent_desktop  # Streaming torrent app for Mac, Windows, and Linux
-    # ytmdl
     gdown
-    # youtube-music
-    # youtube-tui
-    # httpie
-    # python310Packages.httpie
     instaloader
-    # uget
-    # uget-integrator
-    # axel 
-    # downonspot  # A spotify downloader writter in rust
-    # spotdl  # Download your Spotify playlists and songs along with album art and metadata
-    # popcorntime
-    # lgogdownloader
-    # megacmd
+    gallery-dl
   ];
 
   language = (with pkgs; [
-    # python39Full
     dbus
     yarn
     yarn2nix
-    # nim
     jq
     nodejs
     apacheHttpd
@@ -119,10 +105,12 @@ let
   ]) ++ (with pkgs.nodePackages_latest; [
     pnpm
     npm-check-updates
-  ]) ++ (with pkgs.python311Packages; [
+  ]) ++ (with pkgs.python313Packages; [
     pip
     dbus-python
     urllib3
+    selenium
+    # selenium-wire
   ]) ++ (with pkgs.luajitPackages; [
     luarocks
   ]) ++ (with pkgs.nodePackages; [
@@ -130,14 +118,13 @@ let
   ]) ++ (with pkgs; [
     # nixfmt-rfc-style
     nixpkgs-fmt
-    sumneko-lua-language-server
-    # lua51Packages.lua-lsp
-    sumneko-lua-language-server
-    stylua
     lua-language-server
+    # lua51Packages.lua-lsp
+    stylua
     python311Packages.pynvim
     python310Packages.pynvim
-    # ueberzug
+    ueberzugpp
+    rxvt-unicode
     ripgrep
     ripgrep-all
     vgrep

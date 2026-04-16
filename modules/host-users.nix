@@ -14,8 +14,11 @@ let
   username = "alfurqani";
 in
 {
-  networking.hostName = hostname;
-  networking.computerName = hostname;
+  networking = {
+    hostName = hostname;
+    computerName = hostname;
+    # dns-crypt.enable = true;
+  };
   system.defaults.smb.NetBIOSName = hostname;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.

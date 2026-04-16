@@ -34,6 +34,8 @@
         # ===================================================================
         # == Options
         # ===================================================================
+        set editor nano
+        set visual_editor nano
         
         # Which viewmode should be used?  Possible values are:
         #     miller: Use miller columns which show multiple levels of the hierarchy
@@ -131,7 +133,7 @@
         #   Preview images in full color with the external command "ueberzug".
         #   Images are shown by using a child window.
         #   Only for users who run X11 in GNU/Linux.
-        set preview_images_method ueberzug
+        set preview_images_method urxvt
         
         # # Delay in seconds before displaying an image with the w3m method.
         # # Increase it in case of experiencing display corruption.

@@ -1,4 +1,4 @@
-{ pkgs, ...}: {
+{ system, pkgs, ...}: {
 
   # TODO To make this work, homebrew need to be installed manually, see https://brew.sh
   # 
@@ -14,7 +14,7 @@
     };
 
     taps = [
-      # "homebrew/cask"
+      "homebrew/cask"
       "homebrew/cask-fonts"
       "homebrew/services"
       "homebrew/cask-versions"
@@ -32,10 +32,11 @@
       ## Browser
       "firefox"
       "brave-browser"
+      "librewolf"
       "opera"
+      "cloudflare-warp"
       ## Downloader
       "free-download-manager"
-      "qbittorrent"
       ## Terminal
       "alacritty"
       "kitty"
@@ -43,6 +44,7 @@
       ## Chat
       "whatsapp"
       "telegram"
+      "discord"
       ## Text Editor & Notes
       "visual-studio-code"
       "notion"
@@ -54,6 +56,7 @@
       "figma"
       "canva"
       ## Others
+      "bitwarden"
       "karabiner-elements"
       "mounty"
       "balenaetcher"
