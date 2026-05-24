@@ -102,6 +102,8 @@ let
     cachix
     direnv
     nix-direnv
+    python312
+    python312Packages.pymobiledevice3
   ]) ++ (with pkgs.nodePackages_latest; [
     pnpm
     npm-check-updates

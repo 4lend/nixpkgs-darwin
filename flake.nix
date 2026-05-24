@@ -9,8 +9,8 @@
 
     substituters = [
       "https://cache.nixos.org"
-      "https://cachix.org"
-      "https://cache.komunix.org"
+      # "https://cachix.org"
+      # "https://cache.komunix.org"
       # "https://mirrors.ustc.edu.cn/nix-channels/store"  # china mirror
       # "https://mirrors.tuna.tsinghua.edu.cn"
     ];
@@ -98,6 +98,7 @@
           ./home/ranger.nix
           ./home/shells.nix
           ./home/tmux.nix
+          ./home/yazi.nix
           ./home/yt-dlp.nix
         ];
       };
