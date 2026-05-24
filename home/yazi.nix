@@ -19,7 +19,7 @@
     settings = {
 
     };
-    extraPackages; [
+    extraPackages = [
       
     ];
   };

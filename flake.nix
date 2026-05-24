@@ -124,6 +124,9 @@
               home-manager.extraSpecialArgs = inputs;
               # home-manager.extraSpecialArgs = { inherit fishConfig shellAliases; };
               home-manager.users.${primaryUserInfo.fullname} = homeManagerModules;
+              nixpkgs.config = {
+                darwinMinVersion = "12.0";
+              };
             }
           ];
           # activationScript = ''

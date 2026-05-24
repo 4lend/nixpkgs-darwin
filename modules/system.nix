@@ -18,9 +18,8 @@
       comic-neue
       comic-relief
       noto-fonts
-      noto-fonts-extra
-      noto-fonts-emoji
-      vistafonts
+      noto-fonts-color-emoji
+      vista-fonts
       helvetica-neue-lt-std
       victor-mono
       ibm-plex
