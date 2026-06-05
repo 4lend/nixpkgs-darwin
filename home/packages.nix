@@ -16,7 +16,7 @@ let
     tig
     lazygit
     git-crypt
-    gitkraken
+    # gitkraken
     cmus
     # smartgithg
     # gh
@@ -59,8 +59,9 @@ let
     # fltrdr  # A TUI text reader for the terminal
     # pssh
     # cowsay
-    fontconfig
-    google-fonts
+
+    # fontconfig
+    # google-fonts
 
     # terminal display system information
     dwt1-shell-color-scripts
@@ -77,14 +78,14 @@ let
     pridefetch
 
     # nix
-    nix
-    nix-index
-    nix-prefetch
-    nix-prefetch-hg
-    nix-prefetch-git
-    nix-prefetch-github
-    nix-prefetch-scripts
-    nix-prefetch-docker
+    # nix
+    # nix-index
+    # nix-prefetch
+    # nix-prefetch-hg
+    # nix-prefetch-git
+    # nix-prefetch-github
+    # nix-prefetch-scripts
+    # nix-prefetch-docker
 
     # Downloader
     gdown
@@ -97,26 +98,24 @@ let
     yarn
     yarn2nix
     jq
-    nodejs
+    nil
     apacheHttpd
     cachix
     direnv
     nix-direnv
     python312
-    python312Packages.pymobiledevice3
+    # python312Packages.pymobiledevice3
   ]) ++ (with pkgs.nodePackages_latest; [
     pnpm
     npm-check-updates
   ]) ++ (with pkgs.python313Packages; [
     pip
-    dbus-python
+    # dbus-python
     urllib3
-    selenium
+    # selenium
     # selenium-wire
   ]) ++ (with pkgs.luajitPackages; [
     luarocks
-  ]) ++ (with pkgs.nodePackages; [
-    typescript-language-server
   ]) ++ (with pkgs; [
     # nixfmt-rfc-style
     nixpkgs-fmt
@@ -130,7 +129,7 @@ let
     ripgrep
     ripgrep-all
     vgrep
-    gcc
+    # gcc
   ]);
 
 in
@@ -143,6 +142,7 @@ in
     "python-2.7.18.6"
   ];
   home.packages = packages ++ language;
+  # home.packages = packages;
 
   # home.packages = packages ++ xfcePkgs ++ gnomeExtension;
   # nixpkgs.config.packageOverrides = pkgs: {

@@ -24,15 +24,28 @@ in
   programs.nix-index.enable = true;
 
   # do garbage collection weekly to keep disk usage low
-  nix.gc = {
-    # user = "root";
-    automatic = lib.mkForce true;
-    options = lib.mkForce (gcList.week);
+  nix = {
+    gc = {
+      user = "root";
+      automatic = lib.mkForce true;
+    };
+    optimise = {
+      automatic = true;
+      user = "root";
+    };
   };
-
-  # Manual optimise storage: nix-store --optimise
-  # https://nixos.org/manual/nix/stable/command-ref/conf-file.html#conf-auto-optimise-store
-  nix.optimise.automatic = true;
+  # nix.gc = {
+  #   user = "root";
+  #   automatic = lib.mkForce true;
+  #   # options = lib.mkForce (gcList.week);
+  # };
+  #
+  # # Manual optimise storage: nix-store --optimise
+  # # https://nixos.org/manual/nix/stable/command-ref/conf-file.html#conf-auto-optimise-store
+  # nix.optimise = {
+  #   automatic = true;
+  #   user = "root";
+  # };
   ids = {
     uids.nixbld = 300;
     gids.nixbld = 30000;

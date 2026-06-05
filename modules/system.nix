@@ -5,8 +5,9 @@
   fonts = {
     # fontDir.enable = true;
     packages  = with pkgs; [
+      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
       # (nerdfonts.override { fonts = [ "JetBrainsMono" "CodeNewRoman" "SpaceMono" "ComicShannsMono" "ProFont" "FiraCode" ]; })
-      nerd-fonts.jetbrains-mono
+      # nerd-fonts.jetbrains-mono
       # nerd-fonts.CodeNewRoman
       # nerd-fonts.SpaceMono
       # nerd-fonts.ComicShannsMono
@@ -19,8 +20,8 @@
       comic-relief
       noto-fonts
       noto-fonts-color-emoji
-      vista-fonts
-      helvetica-neue-lt-std
+      # vista-fonts
+      # helvetica-neue-lt-std
       victor-mono
       ibm-plex
       smiley-sans # A condensed and oblique Chinese typeface seeking a visual balance between the humanist and the geometric
@@ -39,7 +40,7 @@
 
   system = {
     # activationScripts are executed every time you boot the system or run `nixos-rebuild` / `darwin-rebuild`.
-    stateVersion = 6;
+    stateVersion = 5;
     # activationScripts = {
     #   # postUserActivation.text = ''
     #   #   # activateSettings -u will reload the settings from the database and apply them to the current session,

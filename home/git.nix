@@ -1,22 +1,18 @@
-{ pkgs, config, ... }:
+{ config, pkgs, ... }:
 
 {
-  home.username = "alfurqani";
-  home.homeDirectory = "/Users/alfurqani";
-
   programs.git = {
     enable = true;
-    settings = {
-      user = {
-        email = "syifa.alfurqoni@gmail.com";
-        name = "Alfurqani";
-      };
-      rerere = {
-        enable = true;
-      };
-      pull = {
-        ff = "only";
-      };
-    };
+    userName = "Alfurqani";
+    userEmail = "syifa.alfurqoni@gmail.com";
+    extraConfig = ''
+      [rerere]
+        enable = true
+      [pull]
+        ff = only
+    '';
+    # ignores = [ "result" ];
+    # signing.key = "...";
+    # signing.signByDefault = true;
   };
 }

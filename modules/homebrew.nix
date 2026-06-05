@@ -35,26 +35,31 @@
       "librewolf"
       "opera"
       "cloudflare-warp"
+
       ## Downloader
       "free-download-manager"
+
       ## Terminal
       "alacritty"
       "kitty"
       "wezterm"
+      
       ## Chat
       "whatsapp"
       "telegram"
       "discord"
+
       ## Text Editor & Notes
       "visual-studio-code"
       "notion"
       "libreoffice"
+
       ## Media
       "mpv"
-      # "vlc"
       "digikam"
       "figma"
       "canva"
+
       ## Others
       "bitwarden"
       "karabiner-elements"

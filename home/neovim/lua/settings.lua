@@ -3,11 +3,18 @@ local wo = vim.wo
 local fn = vim.fn
 local c = vim.cmd
 
+local lua_root = vim.fn.expand("~/.config/nixpkgs/home/neovim/lua")
+if vim.fn.isdirectory(lua_root) == 1 then
+    vim.opt.rtp:prepend(lua_root)
+end
+
 -- c "colorscheme nightfx"
-c "colorscheme kanagawa-dragon"
+-- c "colorscheme kanagawa-dragon"
 c "au InsertEnter * set nornu"
 c "au InsertLeave * set rnu"
 c "set shell=/etc/profiles/per-user/alfurqani/bin/bash"
+-- c "NvimTreeOpen"
+-- vim.cmd("NvimTreeOpen")
 
 c([[
 augroup HelpTab
@@ -83,3 +90,26 @@ o.wildignore = [[
 *.swp,.lock,.DS_Store,._*
 */tmp/*,*.so,*.swp,*.zip,**/node_modules/**,**/target/**,**.terraform/**"
 ]]
+
+-- Load all plugin configs
+-- Load semua konfigurasi plugin dengan dofile (path absolut)
+local config_dir = vim.fn.expand("~/.config/nixpkgs/home/neovim/lua/config/")
+
+local function load_config(name)
+    local file = config_dir .. name .. ".lua"
+    if vim.fn.filereadable(file) == 1 then
+        dofile(file)
+    else
+        vim.notify("Config missing: " .. file, vim.log.levels.ERROR)
+    end
+end
+
+load_config("telescope")
+load_config("tree")
+load_config("barbar-nvim")
+load_config("lualine")
+load_config("autopairs")
+-- load_config("indent")
+load_config("cmp")
+load_config("lsp")
+load_config("colorscheme")

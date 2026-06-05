@@ -18,19 +18,23 @@
 
   # This is the standard format for flake.nix. `inputs` are the dependencies of the flake,
   # Each item in `inputs` will be passed as a parameter to the `outputs` function after being pulled and built.
+
   inputs = {
     lnscrypt-module.url = "github:andreoss/dnscrypt-nixos-module";
-    nixpkgs.url = "github:nixOS/nixpkgs/release-25.11";
-    nixpkgs-darwin.url = "github:nixOS/nixpkgs/nixpkgs-25.11-darwin";
+    
+    nixpkgs.url = "github:nixOS/nixpkgs/nixpkgs-24.11-darwin";
+    nixpkgs-darwin.url = "github:nixOS/nixpkgs/nixpkgs-24.11-darwin";  # opsional, sinkronkan
+    
     darwin = {
-      url = "github:nix-darwin/nix-darwin/nix-darwin-25.11";
+      url = "github:nix-darwin/nix-darwin/nix-darwin-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
+  
     flake-compat = {
       url = "github:edolstra/flake-compat";
       flake = false;
