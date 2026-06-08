@@ -23,7 +23,7 @@ in
     configFile = {
       "./lf".source = ./configs/lf;
       "./dash".source = ./configs/dash;
-      "./vifm".source = ./configs/vifm;
+      # "./vifm".source = ./configs/vifm;
       # "./mpv".source = ./configs/mpv_conf;
       "./wezterm".source = ./configs/wezterm;
     };

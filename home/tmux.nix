@@ -37,6 +37,8 @@ in
       { plugin = tilish;
       extraConfig = ''
         set -g @tilish-navigate 'on'
+        set -g allow-passthrough on
+        set -g default-terminal "wezterm"
       '';
       }
       vim-tmux-navigator

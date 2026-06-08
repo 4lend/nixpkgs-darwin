@@ -10,6 +10,7 @@ let
     # adb-sync  # Broken
 
     # terminal
+    fzf
     ghq
     tmuxinator # Manage complex tmux sessions easily
     cmatrix

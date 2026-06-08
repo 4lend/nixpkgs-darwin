@@ -1,61 +1,32 @@
 {
   description = "ALiSO Minimal Nix";
 
-  # Want to know Nix in details? Looking for a beginner-friendly tutorial?
-  # Check out https://github.com/ryan4yin/nixos-and-flakes-book !
-
   nixConfig = {
     experimental-features = [ "nix-command" "flakes" ];
-
-    substituters = [
-      "https://cache.nixos.org"
-      # "https://cachix.org"
-      # "https://cache.komunix.org"
-      # "https://mirrors.ustc.edu.cn/nix-channels/store"  # china mirror
-      # "https://mirrors.tuna.tsinghua.edu.cn"
-    ];
+    substituters = [ "https://cache.nixos.org" ];
   };
 
-  # This is the standard format for flake.nix. `inputs` are the dependencies of the flake,
-  # Each item in `inputs` will be passed as a parameter to the `outputs` function after being pulled and built.
-
   inputs = {
-    lnscrypt-module.url = "github:andreoss/dnscrypt-nixos-module";
-    
-    nixpkgs.url = "github:nixOS/nixpkgs/nixpkgs-24.11-darwin";
-    nixpkgs-darwin.url = "github:nixOS/nixpkgs/nixpkgs-24.11-darwin";  # opsional, sinkronkan
-    
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-24.11-darwin";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+
     darwin = {
       url = "github:nix-darwin/nix-darwin/nix-darwin-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    
+
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-  
-    flake-compat = {
-      url = "github:edolstra/flake-compat";
-      flake = false;
-    };
+
+    flake-compat = { url = "github:edolstra/flake-compat"; flake = false; };
     flake-utils.url = "github:numtide/flake-utils";
-    homebrew = {
-      url = "github:Homebrew/brew";
-      flake = false;
-    };
-    comma = {
-      url = "github:Shopify/comma";
-      flake = false;
-    };
+    homebrew = { url = "github:Homebrew/brew"; flake = false; };
+    comma = { url = "github:Shopify/comma"; flake = false; };
   };
 
-  # The `outputs` function will return all the build results of the flake. 
-  # A flake can have many use cases and different types of outputs,
-  # parameters in `outputs` are defined in `inputs` and can be referenced by their names. 
-  # However, `self` is an exception, this special parameter points to the `outputs` itself (self-reference)
-  # The `@` syntax here is used to alias the attribute set of the inputs's parameter, making it convenient to use inside the function.
-  outputs = { self, nixpkgs, darwin, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, darwin, home-manager, ... }@inputs:
     let
       system = {
         linux64 = "x86_64-linux";
@@ -68,83 +39,65 @@
         username = "4lend";
         fullname = "alfurqani";
         email = "syifa.alfurqoni@gmail.com";
-        nixConfigDirectory =
-          "/Users/alfurqani/.config";
-        within = {
-          gpg.enable = true;
-          pass.enable = true;
-        };
-      };
-
-      lib = darwin.lib;
-
-      brewModules = [ ./modules/homebrew.nix ];
-
-      randomModules = [
-        ./modules/nix-core.nix
-        ./modules/system.nix
-        ./modules/apps.nix
-        # ./modules/homebrew.nix
-        ./modules/host-users.nix
-      ];
-
-      homeManagerModules = {
-        imports = [
-          ./home/home.nix
-          ./home/alacritty.nix
-          ./home/aria2.nix
-          ./home/fzf.nix
-          ./home/git.nix
-          ./home/kitty.nix
-          # ./home/mpv.nix
-          ./home/neovim
-          ./home/packages.nix
-          ./home/ranger.nix
-          ./home/shells.nix
-          ./home/tmux.nix
-          ./home/yazi.nix
-          ./home/yt-dlp.nix
-        ];
+        nixConfigDirectory = "/Users/alfurqani/.config";
+        within = { gpg.enable = true; pass.enable = true; };
       };
 
       shellConfig = import ./home/shells.nix;
       fishConfig = shellConfig.fishConfig;
       shellAliases = shellConfig.shellAliases;
 
-      flakePath = builtins.toString ./.;
+      lib = darwin.lib;
+
+      systemModules = [
+        ./modules/nix-core.nix
+        ./modules/system.nix
+        ./modules/apps.nix
+        ./modules/homebrew.nix
+        ./modules/host-users.nix
+      ];
+
+      homeManagerModules = {
+        imports = [
+          ./home/home.nix
+          ./home/vifm.nix
+          ./home/alacritty.nix
+          ./home/aria2.nix
+          ./home/fzf.nix
+          ./home/git.nix
+          ./home/kitty.nix
+          ./home/neovim
+          ./home/packages.nix
+          ./home/shells.nix
+          ./home/tmux.nix
+          ./home/yt-dlp.nix
+          ./home/ranger.nix
+          # ./home/yazi.nix
+        ];
+      };
+
+      myOverlays = [
+        (final: prev: {
+          vifm = nixpkgs-unstable.legacyPackages.${final.system}.vifm;
+        })
+      ];
 
     in
     {
-      darwinConfigurations = rec {
-        ${primaryUserInfo.fullname} = lib.darwinSystem {
-          system = system.mac64;
-          # modules = inputs.dnscrypt-module.nixosModules.default ++ randomModules ++ [
-          modules = randomModules ++ [
-            home-manager.darwinModules.home-manager
-            {
-              # home-manager.useGlobalPkgs = true;
-              home-manager.useGlobalPkgs = false;
-              home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = inputs;
-              # home-manager.extraSpecialArgs = { inherit fishConfig shellAliases; };
-              home-manager.users.${primaryUserInfo.fullname} = homeManagerModules;
-              nixpkgs.config = {
-                darwinMinVersion = "12.0";
-              };
-            }
-          ];
-          # activationScript = ''
-          #   sudo dscl . -create /Users/$USER UserShell /etc/profiles/per-user/alfurqani/bin/fish
-          #   echo "Default shell changed to /etc/profiles/per-user/alfurqani/bin/fish
-          # '';
-        };
-        # TODO also change this line to "aarch64-darwin" if you are using Apple Silicon
-        formatter.x86_64-darwin =
-          nixpkgs.legacyPackages.x86_64-darwin.alejandra;
-        # darwinModules = {
-        #   system = import ./system/darwin-configuration.nix;
-        # };
+      darwinConfigurations.${primaryUserInfo.fullname} = lib.darwinSystem {
+        system = system.mac64;
+        modules = systemModules ++ [
+          home-manager.darwinModules.home-manager
+          {
+            nixpkgs.overlays = myOverlays;
+            home-manager.useGlobalPkgs = false;
+            home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = inputs;
+            home-manager.users.${primaryUserInfo.fullname} = homeManagerModules;
+          }
+        ];
       };
 
+      formatter.x86_64-darwin = nixpkgs.legacyPackages.x86_64-darwin.alejandra;
     };
 }

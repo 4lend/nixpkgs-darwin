@@ -1,43 +1,36 @@
-{ system, pkgs, ...}: {
+{ system, pkgs, ... }: {
 
-  # TODO To make this work, homebrew need to be installed manually, see https://brew.sh
-  # 
-  # The apps installed by homebrew are not managed by nix, and not reproducible!
-  # But on macOS, homebrew has a much larger selection of apps than nixpkgs, especially for GUI apps!
   homebrew = {
     enable = true;
 
     onActivation = {
       autoUpdate = false;
-      # 'zap': uninstalls all formulae(and related files) not listed here.
+      # 'zap': uninstalls all formulae (and related files) not listed here.
       # cleanup = "zap";
     };
 
     taps = [
-      "homebrew/cask"
-      "homebrew/cask-fonts"
       "homebrew/services"
-      "homebrew/cask-versions"
     ];
 
-    # `brew install`
-    # TODO Feel free to add your favorite apps here.
+    # `brew install` (formulae)
     brews = [
-      # "mariadb"
+      # "mariadb"   # uncomment kalau butuh
     ];
 
     # `brew install --cask`
-    # TODO Feel free to add your favorite apps here.
     casks = [
       ## Browser
       "firefox"
       "brave-browser"
-      "librewolf"
-      "opera"
       "cloudflare-warp"
 
       ## Downloader
       "free-download-manager"
+      "jdownloader"
+      "hakuneko"
+      "webtorrent"
+      "qbittorrent"
 
       ## Terminal
       "alacritty"
@@ -52,20 +45,24 @@
       ## Text Editor & Notes
       "visual-studio-code"
       "notion"
-      "libreoffice"
 
       ## Media
-      "mpv"
       "digikam"
       "figma"
       "canva"
+      "obs"
 
-      ## Others
+      ## Utilities & Lainnya
       "bitwarden"
       "karabiner-elements"
+      "keyclu"
+      "localsend"
       "mounty"
-      "balenaetcher"
       "android-file-transfer"
+      "menumeters"
+      "flowvision"
+      "todoist-app"
+      "balenaetcher"
       "google-drive"
     ];
   };
