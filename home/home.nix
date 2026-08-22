@@ -28,9 +28,9 @@ in
       "./wezterm".source = ./configs/wezterm;
     };
     # dataHome = "$HOME/.local/share";
-    dataFile = {
-      "lf".source = ./locals/lf;
-    };
+    # dataFile = {
+    #   "lf".source = ./locals/lf;
+    # };
   };
 
   home = {

@@ -45,6 +45,8 @@
       ## Text Editor & Notes
       "visual-studio-code"
       "notion"
+      "notion-calendar"
+      "obsidian"
 
       ## Media
       "digikam"

@@ -61,24 +61,27 @@
         imports = [
           ./home/home.nix
           ./home/vifm.nix
+          ./home/nnn.nix
+          # ./home/lf.nix
           ./home/alacritty.nix
           ./home/aria2.nix
           ./home/fzf.nix
           ./home/git.nix
           ./home/kitty.nix
+          # ./home/mpv.nix
           ./home/neovim
           ./home/packages.nix
           ./home/shells.nix
           ./home/tmux.nix
           ./home/yt-dlp.nix
           ./home/ranger.nix
-          # ./home/yazi.nix
+          ./home/yazi.nix
         ];
       };
 
       myOverlays = [
         (final: prev: {
-          vifm = nixpkgs-unstable.legacyPackages.${final.system}.vifm;
+          vifm = nixpkgs.legacyPackages.${final.system}.vifm; # Use stable
         })
       ];
 
