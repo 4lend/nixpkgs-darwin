@@ -127,7 +127,7 @@ let
     rmf = "rm -rf";
     a = "aria2c";
     vf = "vifm";
-    # ra = "ranger";
+    ra = "ranger";
     pc = "protonvpn-cli";
     nq = "notepadqq";
     bs = "bash";

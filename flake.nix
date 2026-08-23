@@ -74,7 +74,7 @@
           ./home/shells.nix
           ./home/tmux.nix
           ./home/yt-dlp.nix
-          # ./home/ranger.nix
+          ./home/ranger.nix
           ./home/yazi.nix
         ];
       };
