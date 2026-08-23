@@ -26,7 +26,7 @@ let
     # # gitlab-ee
     # # gitlab-shell
     # # gitlab-pages
-    ranger  # findutils  mlocate  
+     # ranger  # findutils  mlocate
     lf
     # deer
     # # pistol
