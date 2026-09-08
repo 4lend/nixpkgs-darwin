@@ -7,7 +7,5 @@
       seed-ratio = 0;
       seed-time = 0;
     };
-    extraConfig = ''
-    '';
   };
 }

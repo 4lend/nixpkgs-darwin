@@ -55,6 +55,8 @@
       "obs"
 
       ## Utilities & Lainnya
+      "claude"
+      "poe"
       "bitwarden"
       "karabiner-elements"
       "keyclu"

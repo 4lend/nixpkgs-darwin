@@ -3,6 +3,7 @@
   programs.yazi = {
     enable = true;
     package = pkgs.yazi;
+    shellWrapperName = "y"; # opsional, jika ingin command `y`
 
     settings = {
       manager = {
@@ -13,7 +14,7 @@
       };
       preview = {
         max_size = 0;
-        image_method = "auto";
+        # image_method tidak diperlukan lagi
       };
     };
 
@@ -29,7 +30,7 @@
           { on = [ "S" ]; run = "shell \"$SHELL\" --block --confirm"; desc = "Open shell"; }
           { on = [ "i" ]; run = "open --interactive"; desc = "Open interactively"; }
 
-          # Jumping around (from ranger)
+          # Jumping around
           { on = [ "g" "h" ]; run = "cd ~"; desc = "Go home"; }
           { on = [ "g" "e" ]; run = "cd /etc"; desc = "Go to /etc"; }
           { on = [ "g" "u" ]; run = "cd /usr"; desc = "Go to /usr"; }
@@ -56,7 +57,7 @@
           { on = [ "a" ]; run = "rename --cursor=before_ext"; desc = "Rename append"; }
           { on = [ "A" ]; run = "rename --cursor=end"; desc = "Rename append at end"; }
           { on = [ "I" ]; run = "rename --cursor=start"; desc = "Rename at start"; }
-          { on = [ "b" "r" ]; run = "shell 'bulkrename \"$@\"' --block --interactive"; desc = "Bulk Rename"; }
+          { on = [ "b" "r" ]; run = "bulkrename"; desc = "Bulk Rename"; }  # ← diperbaiki
 
           # Copy Paths
           { on = [ "y" "p" ]; run = "copy path"; desc = "Copy absolute path"; }
@@ -71,22 +72,24 @@
           { on = [ "<C-f>" ]; run = "shell 'res=\"$(fzf)\" && ya emit reveal \"$res\"' --block --confirm"; desc = "FZF select"; }
           { on = [ "<C-g>" ]; run = "shell 'res=\"$(fzf)\" && ya emit reveal \"$res\"' --block --confirm"; desc = "FZF locate"; }
 
-          # Sorting (using official Yazi flags)
+          # Sorting (menggunakan key yang valid)
           { on = [ "o" "r" ]; run = "sort random"; desc = "Sort random"; }
           { on = [ "o" "s" ]; run = "sort size"; desc = "Sort by size"; }
           { on = [ "o" "b" ]; run = "sort alphabetical"; desc = "Sort by basename"; }
           { on = [ "o" "n" ]; run = "sort natural"; desc = "Sort naturally"; }
           { on = [ "o" "m" ]; run = "sort mtime"; desc = "Sort by mtime"; }
-          { on = [ "o" "c" ]; run = "sort mtime"; desc = "Sort by ctime (fallback to mtime)"; }
-          { on = [ "o" "a" ]; run = "sort btime"; desc = "Sort by atime"; }
           { on = [ "o" "e" ]; run = "sort extension"; desc = "Sort by extension"; }
+          { on = [ "o" "a" ]; run = "sort btime"; desc = "Sort by birth time"; }  # ← ganti atime menjadi btime
+          # Hapus binding untuk ctime karena tidak ada key sort tersebut
+          # { on = [ "o" "c" ]; ... }  # dihilangkan
+
           { on = [ "o" "S" ]; run = "sort size --reverse"; desc = "Sort by size reverse"; }
           { on = [ "o" "B" ]; run = "sort alphabetical --reverse"; desc = "Sort by basename reverse"; }
           { on = [ "o" "N" ]; run = "sort natural --reverse"; desc = "Sort naturally reverse"; }
           { on = [ "o" "M" ]; run = "sort mtime --reverse"; desc = "Sort by mtime reverse"; }
-          { on = [ "o" "C" ]; run = "sort mtime --reverse"; desc = "Sort by ctime reverse"; }
-          { on = [ "o" "A" ]; run = "sort btime --reverse"; desc = "Sort by atime reverse"; }
           { on = [ "o" "E" ]; run = "sort extension --reverse"; desc = "Sort by extension reverse"; }
+          { on = [ "o" "A" ]; run = "sort btime --reverse"; desc = "Sort by birth time reverse"; }  # ← perbaiki
+          # Hapus juga reverse untuk ctime
 
           # Linemode
           { on = [ "M" "s" ]; run = "linemode size"; desc = "Linemode size"; }
@@ -98,7 +101,7 @@
           { on = [ "<C-h>" ]; run = "hidden toggle"; desc = "Toggle hidden"; }
           { on = [ "z" "d" ]; run = "sort --dir-first"; desc = "Toggle sort directories first"; }
 
-          # Tabs (similar to ranger)
+          # Tabs
           { on = [ "<C-n>" ]; run = "tab_create --current"; desc = "Create new tab"; }
           { on = [ "g" "n" ]; run = "tab_create --current"; desc = "Create new tab"; }
           { on = [ "<C-w>" ]; run = "close"; desc = "Close tab"; }

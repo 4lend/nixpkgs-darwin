@@ -93,6 +93,7 @@
           home-manager.darwinModules.home-manager
           {
             nixpkgs.overlays = myOverlays;
+            system.primaryUser = "alfurqani";
             home-manager.useGlobalPkgs = false;
             home-manager.useUserPackages = true;
             home-manager.extraSpecialArgs = inputs;

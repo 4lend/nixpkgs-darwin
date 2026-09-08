@@ -24,16 +24,16 @@ in
   programs.nix-index.enable = true;
 
   # do garbage collection weekly to keep disk usage low
-  nix = {
-    gc = {
-      user = "root";
-      automatic = lib.mkForce true;
-    };
-    optimise = {
-      automatic = true;
-      user = "root";
-    };
-  };
+  # nix = {
+  #   gc = {
+  #     user = "root";
+  #     automatic = lib.mkForce true;
+  #   };
+  #   optimise = {
+  #     automatic = true;
+  #     user = "root";
+  #   };
+  # };
   # nix.gc = {
   #   user = "root";
   #   automatic = lib.mkForce true;

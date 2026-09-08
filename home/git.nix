@@ -3,16 +3,21 @@
 {
   programs.git = {
     enable = true;
-    userName = "Alfurqani";
-    userEmail = "syifa.alfurqoni@gmail.com";
-    extraConfig = ''
-      [rerere]
-        enable = true
-      [pull]
-        ff = only
-    '';
-    # ignores = [ "result" ];
-    # signing.key = "...";
-    # signing.signByDefault = true;
+    settings = {
+      user = {
+        name = "Alfurqani";
+        email = "syifa.alfurqoni@gmail.com";
+      };
+      # Contoh pengaturan tambahan bisa dimasukkan di sini
+      # rerere.enable = true;
+      # pull.ff = "only";
+    };
+    # Jika masih ingin menggunakan extraConfig, bisa juga seperti ini:
+    # extraConfig = ''
+    #   [rerere]
+    #     enable = true
+    #   [pull]
+    #     ff = only
+    # '';
   };
 }

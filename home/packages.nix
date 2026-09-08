@@ -69,7 +69,7 @@ let
     pokemon-colorscripts-mac
     btop
     htop
-    neofetch
+    # neofetch
     bottom
     checkip
     freshfetch
@@ -87,6 +87,7 @@ let
     # nix-prefetch-github
     # nix-prefetch-scripts
     # nix-prefetch-docker
+    home-manager
 
     # Downloader
     gdown
@@ -97,7 +98,7 @@ let
   language = (with pkgs; [
     dbus
     yarn
-    yarn2nix
+    # yarn2nix
     jq
     nil
     apacheHttpd
@@ -106,10 +107,7 @@ let
     nix-direnv
     python312
     # python312Packages.pymobiledevice3
-  ]) ++ (with pkgs.nodePackages_latest; [
-    pnpm
-    npm-check-updates
-  ]) ++ (with pkgs.python313Packages; [
+  ])++ (with pkgs.python313Packages; [
     pip
     # dbus-python
     urllib3
@@ -124,7 +122,7 @@ let
     # lua51Packages.lua-lsp
     stylua
     python311Packages.pynvim
-    python310Packages.pynvim
+    # python310Packages.pynvim
     ueberzugpp
     rxvt-unicode
     ripgrep
