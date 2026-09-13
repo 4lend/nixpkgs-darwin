@@ -47,6 +47,7 @@ let
     # hb        = "home-manager build";
     # hs        = "home-manager switch";
     # hg        = "home-manager generations";
+    hm = "nix run \"github:nix-community/home-manager/release-26.05\" -- switch --flake ~/.config/nixpkgs#alfurqani";
     nf = "nix flake";
     nfu = "nix flake update";
     nfa = "nix flake archive";

@@ -11,6 +11,8 @@ in
       defaultEditor = true;
       viAlias = true;
       vimAlias = false;
+      withPython3 = true;
+      withRuby = true;
 
       plugins = with pkgs.vimPlugins; [
         telescope-nvim

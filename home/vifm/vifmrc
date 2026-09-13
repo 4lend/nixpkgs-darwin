@@ -1,0 +1,188 @@
+" ============================================================================
+" Vifm configuration - konversi dari ranger.nix
+" Vifm 0.14.3
+"
+" CATATAN: Vifm adalah DUAL-PANE sejati (seperti Midnight Commander).
+" Bukan Miller columns seperti ranger.
+" ============================================================================
+
+" Set color scheme
+colorscheme gruvbox
+
+" --- Pengaturan Dasar ---
+set vicmd=nvim
+set vixcmd=nvim
+set scrolloff=5
+set history=100
+set undolevels=100
+
+" --- Line Numbers ---
+set number
+set relativenumber
+set numberwidth=3
+
+" --- Pencarian ---
+set ignorecase
+set nosmartcase
+set incsearch
+set hlsearch
+
+" --- Perilaku File ---
+set trash
+set trashdir=$HOME/.local/share/vifm/Trash
+set syscalls
+set sortnumbers
+
+" --- Pengurutan Default ---
+set sort=name
+set sortorder=ascending
+
+" --- Tampilan ---
+set dotfiles
+set mouse=
+set notitle
+set statusline=" %f %= %A %s %p "
+
+" ============================================================================
+" KEY MAPPINGS - SEDEKAT MUNGKIN DENGAN RANGER
+" ============================================================================
+
+" --- Navigasi Dasar ---
+" (h/j/k/l sudah default di vifm, tidak perlu di-remap)
+
+" --- Manajemen Tab ---
+nnoremap <C-n> :tabnew<CR>
+nnoremap gn :tabnew<CR>
+nnoremap gc :tabclose<CR>
+nnoremap gt :tabnext<CR>
+nnoremap gT :tabprev<CR>
+
+" --- Manajemen Panel ---
+nnoremap <Tab> <C-w>w
+
+" --- Riwayat Direktori ---
+nnoremap H :histprev<CR>
+nnoremap L :histnext<CR>
+
+" --- Operasi File ---
+" nnoremap dd :delete<CR>
+" nnoremap yy :yank<CR>
+" nnoremap p :paste<CR>
+" nnoremap dD :delete!<CR>
+" nnoremap dT :delete<CR>
+" nnoremap r :rename<CR>
+" nnoremap cw :rename<CR>
+" nnoremap a :rename<CR>
+" nnoremap A :rename<CR>
+" nnoremap I :rename<CR>
+" nnoremap B :rename<CR>
+
+set cpoptions+=s
+nnoremap <Space> t
+
+" --- Menyalin Path (macOS: pbcopy) ---
+nnoremap yp :!echo -n '%c' \| pbcopy<CR>
+nnoremap yd :!echo -n '%d' \| pbcopy<CR>
+nnoremap yn :!echo -n '%f' \| pbcopy<CR>
+nnoremap y. :!echo -n '%f' \| sed 's/\\.[^.]*$//' \| pbcopy<CR>
+
+" --- Visual Mode / Selection ---
+nnoremap v :visual<CR>
+nnoremap V :visual<CR>
+nnoremap <Space> t
+
+" --- Pencarian dan Filter ---
+" nnoremap / :grep<Space>
+" nnoremap f :find<Space>
+nnoremap zf :filter<Space>
+
+" --- Pengurutan ---
+nnoremap or :sort<CR>
+nnoremap ob :set sort=name<CR>
+nnoremap oB :set sort=-name<CR>
+nnoremap os :set sort=size<CR>
+nnoremap oS :set sort=-size<CR>
+nnoremap om :set sort=time<CR>
+nnoremap oM :set sort=-time<CR>
+nnoremap oc :set sort=ctime<CR>
+nnoremap oC :set sort=-ctime<CR>
+nnoremap oa :set sort=atime<CR>
+nnoremap oA :set sort=-atime<CR>
+nnoremap oe :set sort=ext,name<CR>
+nnoremap oE :set sort=-ext,name<CR>
+nnoremap ot :set sort=type,name<CR>
+nnoremap oT :set sort=-type,name<CR>
+
+" --- Toggle ---
+nnoremap zh :set dotfiles!<CR>
+nnoremap <C-h> :set dotfiles!<CR>
+nnoremap zp :set quickview!<CR>
+
+" --- Lompat Cepat ---
+nnoremap gh :cd ~<CR>
+nnoremap ge :cd /etc<CR>
+nnoremap gu :cd /usr<CR>
+nnoremap gd :cd /dev<CR>
+nnoremap go :cd /opt<CR>
+nnoremap gv :cd /var<CR>
+nnoremap gp :cd /tmp<CR>
+nnoremap gr :cd /<CR>
+nnoremap gm :cd /Volumes<CR>
+
+" --- Keluar & Refresh ---
+nnoremap q :quit<CR>
+nnoremap Q :qall<CR>
+nnoremap R :refresh<CR>
+nnoremap <C-l> :redraw<CR>
+nnoremap ? :help<CR>
+
+" --- Inspeksi & Edit ---
+nnoremap i :view<CR>
+nnoremap E :edit<CR>
+
+" --- Shell ---
+nnoremap s :!$SHELL<CR>
+nnoremap S :!$SHELL<CR>
+
+" --- Bookmark ---
+nnoremap M :marks<CR>
+nnoremap um :delmarks<Space>
+
+" --- Chmod ---
+nnoremap = :chmod<CR>
+
+" --- Directory Size ---
+nnoremap du :!du -d 1 -h<CR>
+nnoremap dU :!du -d 1 -h \| sort -rh<CR>
+nnoremap dc ga
+
+" --- FZF Integration (pakai find) ---
+command! FZFindHere :set noquickview | let $FZF_PICK = system('find . | fzf --height 10 2>/dev/tty') | if $FZF_PICK != '' | execute 'goto' fnameescape($FZF_PICK) | endif
+command! FZFindHome :set noquickview | let $FZF_PICK = system('find $HOME | fzf --height 10 2>/dev/tty') | if $FZF_PICK != '' | execute 'goto' fnameescape($FZF_PICK) | endif
+nnoremap <C-f> :FZFindHere<CR>
+nnoremap <C-g> :FZFindHome<CR>
+
+" ============================================================================
+" FILE TYPE ASSOCIATIONS (macOS)
+" ============================================================================
+
+" PDF -> Firefox, Preview
+filetype {*.pdf},<application/pdf> {Open in Firefox} open -a Firefox.app %c, {Open in Preview} open -a Preview.app %c
+
+" Gambar umum -> FlowVision, Preview
+filetype {*.jpg,*.jpeg,*.png,*.gif,*.bmp,*.tiff,*.tif,*.webp,*.heic,*.svg},<image/*> {Open in FlowVision} open -a FlowVision.app %c, {Open in Preview} open -a Preview.app %c
+
+" RAW -> FlowVision, Photoshop, Preview
+filetype {*.raw,*.cr2,*.cr3,*.nef,*.arw,*.dng,*.orf,*.raf,*.rw2,*.pef,*.srw} {Open in FlowVision} open -a FlowVision.app %c, {Open in Photoshop} open -a "Adobe Photoshop 2024.app" %c, {Open in Preview} open -a Preview.app %c
+
+" Video -> mpv, QuickTime
+filetype {*.mp4,*.mkv,*.avi,*.mov,*.webm,*.m4v,*.flv,*.wmv,*.mpg,*.mpeg,*.3gp},<video/*> {Open in mpv} open -a mpv.app %c, {Open in QuickTime} open -a QuickTime\ Player.app %c
+
+" Audio -> mpv
+filetype {*.mp3,*.flac,*.wav,*.m4a,*.ogg,*.aac,*.opus,*.wma},<audio/*> {Open in mpv} open -a mpv.app %c
+
+" Arsip -> extract
+filetype {*.zip,*.tar,*.gz,*.bz2,*.xz,*.7z,*.rar} {Extract here} mkdir -p %f:r && tar -xf %c -C %f:r
+
+" Fallback: default macOS
+filetype * open %c

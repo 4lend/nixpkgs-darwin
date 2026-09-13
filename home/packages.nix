@@ -10,7 +10,6 @@ let
     # adb-sync  # Broken
 
     # terminal
-    fzf
     ghq
     tmuxinator # Manage complex tmux sessions easily
     cmatrix
@@ -26,8 +25,6 @@ let
     # # gitlab-ee
     # # gitlab-shell
     # # gitlab-pages
-    ranger  # findutils  mlocate
-    lf
     # deer
     # # pistol
     eza
@@ -41,14 +38,12 @@ let
     # neovide
     # z-lua
     # peco
-    autojump
     # pazi
     # fasd
     # yank
     # xsel
     # xclip
     # mov-cli
-    vifm
     wget
     # pinentry  # GnuPG’s interface to passphrase input | need by gnupg / gpg generate keys
     # bro
@@ -87,7 +82,7 @@ let
     # nix-prefetch-github
     # nix-prefetch-scripts
     # nix-prefetch-docker
-    home-manager
+    # home-manager
 
     # Downloader
     gdown

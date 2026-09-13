@@ -1,0 +1,175 @@
+# #  ██   ████
+# # ░██  ░██░
+# # ░██ ██████ ██████  █████
+# # ░██░░░██░ ░░██░░█ ██░░░██
+# # ░██  ░██   ░██ ░ ░██  ░░
+# # ░██  ░██   ░██   ░██   ██
+# # ███  ░██  ░███   ░░█████
+# #░░░   ░░   ░░░     ░░░░░
+
+# # To get image previews, you need these 4 steps:
+# # 1. Install ueberzug
+# # 2. The previewer file (~/.config/lf/previewer for me), must have a command
+# #    similar to mine to generate ueberzug images.
+# # 3. A `set cleaner` line as below is a cleaner script.
+# # 4. lf should be started through a wrapper script (~/.local/bin/lfub for me)
+# #    that creates the environment for ueberzug. This command can be be aliased
+# #    in your shellrc (`alias lf="lfub").
+
+# Convert Configuration From Ranger #
+# Basic Settings
+set hidden false
+set drawbox true
+set icons true
+set period 1
+set cleaner '~/.config/lf/cleaner'
+# Main options
+set icons
+set period 1
+set relativenumber
+set number
+set hidden!
+set hiddenfiles ".*:*.aux:*.log:*.bbl:*.bcf:*.blg:*.run.xml"
+set cleaner '~/.config/lf/cleaner'
+set previewer '~/.config/lf/previewer'
+set promptfmt "
+\033[48;2;35;38;39;38;2;28;220;156m  
+\033[38;2;35;38;39;48;2;202;31;31m
+\033[38;2;202;31;31;48;2;40;47;62m
+\033[38;2;255;255;255m %w 
+\033[38;2;40;47;62;48;2;58;67;89m
+\033[38;2;255;255;255m %f 
+\033[;38;2;58;67;89;49m\033[m"
+set incsearch
+set incfilter
+set globsearch on
+set ratios 2:3:4 # 2:3:7:7
+set truncatechar "…"
+set waitmsg "\033[1;31m⏎\033[m"
+set timefmt "02/01/2006 15:04:05 "
+set infotimefmtnew '02/01 15:04'
+set infotimefmtold '02/01/06'
+set errorfmt "\033[1;31m"
+set numberfmt "\033[38;2;75;87;116m"
+set dircounts
+set tabstop 4
+set scrolloff 5
+set wrapscroll
+set shellopts '-eu'
+set ifs "\n"
+set shell "bash"
+set ruler 'df:acc:progress:selection:filter:ind'
+set cursorpreviewfmt "\033[7m"
+
+# Custom Functions
+cmd open ${{
+    case $(file --mime-type "$f" -bL) in
+        text/*|application/json) $EDITOR "$f";;
+        *) for f in "$@"; do setsid $OPENER "$f" > /dev/null 2>&1; done;;
+    esac
+}}
+
+cmd rename %{{
+    printf "Rename: "
+    read newname
+    printf "Renaming '%s' to '%s' " "$f" "$newname"
+    mv -vn "$f" "$newname"
+}}
+
+cmd bulk-rename %{{
+    old=""
+    new=""
+    printf "Old name pattern: "
+    read old
+    printf "New name pattern (put '*' for keeping the same): "
+    read new
+    rename=1
+    if [ "$new" = "*" ]; then
+        new='&'
+        rename=0
+    fi
+    printf "\\n"
+    count=0
+    for f in "$fx"
+    do
+        escf=$(echo "$f" | sed 's/\\/\\\\/g; s/\//\\\//g')
+        if [ "$old" != "" ] && [ "$new" = "" ]; then
+            newname=$(echo "$f" | sed "s/$old//g")
+        else
+            newname=$(echo "$escf" | sed "s/$old/$new/g")
+        fi
+        if [ "$f" != "$newname" ] && [ "$newname" != "" ]; then
+            mv -vn "$f" "$newname"
+            let count++
+        fi
+    done
+    if [ $count -eq 0 ]; then
+        lf -remote "send $id echo 'No files renamed'"
+    else
+        lf -remote "send $id echo '$count files renamed'"
+    fi
+}}
+
+cmd chmod %{{
+    chmod=''
+    while [ "$chmod" = "" ]
+    do
+        printf 'Mode Bits: '
+        read chmod
+    done
+    count=0
+    for f in "$fx"
+    do
+        chmod $chmod "$f" && let count++
+    done
+    lf -remote "send $id echo 'Changed $count file(s)'"
+}}
+
+# Remove any tmp123 files; For example to remove PHP tmp files
+cmd rmTmp %rmfile /tmp/?*.* --verbose
+
+# File Mappings
+map ` $$lf -remote "send $id echo You're currently watching files under $(pwd)"
+map q quit
+# map i ${{
+#     case $(file --mime-type "$f" -bL) in
+#         text/*|application/json) $EDITOR "$f";;
+#         *) $OPENER "$f" > /dev/null 2>&1 &;;
+#     esac
+# }}
+map A rename
+map c chmod
+map B bulk-rename
+map <Enter> shell
+
+# Archive Mappings
+map az extract
+map ar add
+
+# Bookmarks
+map gh :cd "$HOME"
+# map v :cd "$HOME/Videos"
+# map V :cd "/Volumes"
+# map d :cd "$HOME/Downloads"
+# map p :cd "$HOME/Pictures"
+# map C :mkdir<space>
+# map q :cd "$HOME/downloads/"
+# map r :cd "/usr/src/"
+# map s :cd "/home/username/"
+# map v :cd "/home/username/videos"
+# map e :cd "/etc"
+# map, :cd "/media/"
+# map <a-m> :cd "/mnt"
+
+# Other
+map yy copy
+map dd cut
+map pp paste
+map <c-r> reload
+map . set hidden!
+map - :find
+map / :search &
+map n :search-next
+map N :search-prev
+map x $$rmfile "$fx"
+map sv $$sync

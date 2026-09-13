@@ -60,9 +60,10 @@
       homeManagerModules = {
         imports = [
           ./home/home.nix
-          ./home/vifm.nix
+          ./home/home-manager-cli.nix
+          ./home/vifm
           ./home/nnn.nix
-          # ./home/lf.nix
+          ./home/lf
           ./home/alacritty.nix
           ./home/aria2.nix
           ./home/fzf.nix
@@ -79,12 +80,6 @@
         ];
       };
 
-      myOverlays = [
-        (final: prev: {
-          vifm = nixpkgs.legacyPackages.${final.system}.vifm; # Use stable
-        })
-      ];
-
     in
     {
       darwinConfigurations.${primaryUserInfo.fullname} = lib.darwinSystem {
@@ -92,7 +87,6 @@
         modules = systemModules ++ [
           home-manager.darwinModules.home-manager
           {
-            nixpkgs.overlays = myOverlays;
             system.primaryUser = "alfurqani";
             home-manager.useGlobalPkgs = false;
             home-manager.useUserPackages = true;
@@ -100,6 +94,21 @@
             home-manager.users.${primaryUserInfo.fullname} = homeManagerModules;
           }
         ];
+      };
+
+      homeConfigurations.${primaryUserInfo.fullname} = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.${system.mac64};
+        modules = [
+          homeManagerModules
+          {
+            home = {
+              username = primaryUserInfo.fullname;
+              homeDirectory = "/Users/alfurqani";
+              stateVersion = "24.11";
+            };
+          }
+        ];
+        extraSpecialArgs = inputs;
       };
 
       formatter.x86_64-darwin = nixpkgs.legacyPackages.x86_64-darwin.alejandra;
