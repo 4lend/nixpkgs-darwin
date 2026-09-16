@@ -32,6 +32,7 @@ set trash
 set trashdir=$HOME/.local/share/vifm/Trash
 set syscalls
 set sortnumbers
+set confirm=permdelete
 
 " --- Pengurutan Default ---
 set sort=name
@@ -65,20 +66,13 @@ nnoremap H :histprev<CR>
 nnoremap L :histnext<CR>
 
 " --- Operasi File ---
-" nnoremap dd :delete<CR>
-" nnoremap yy :yank<CR>
-" nnoremap p :paste<CR>
-" nnoremap dD :delete!<CR>
-" nnoremap dT :delete<CR>
-" nnoremap r :rename<CR>
-" nnoremap cw :rename<CR>
-" nnoremap a :rename<CR>
-" nnoremap A :rename<CR>
-" nnoremap I :rename<CR>
-" nnoremap B :rename<CR>
+" dd  = cut (pindah ke trash, tanpa konfirmasi)
+" DD  = delete permanen (dengan konfirmasi)
+" yy  = yank/copy
+" p   = paste (move kalau dari dd, copy kalau dari yy)
+" P   = move instant
 
 set cpoptions+=s
-nnoremap <Space> t
 
 " --- Menyalin Path (macOS: pbcopy) ---
 nnoremap yp :!echo -n '%c' \| pbcopy<CR>
@@ -87,13 +81,14 @@ nnoremap yn :!echo -n '%f' \| pbcopy<CR>
 nnoremap y. :!echo -n '%f' \| sed 's/\\.[^.]*$//' \| pbcopy<CR>
 
 " --- Visual Mode / Selection ---
-nnoremap v :visual<CR>
-nnoremap V :visual<CR>
+" v = visual mode (DEFAULT vifm)
+" V = visual line mode (DEFAULT vifm)
+" Space = toggle selection (mirip ranger)
 nnoremap <Space> t
 
 " --- Pencarian dan Filter ---
-" nnoremap / :grep<Space>
-" nnoremap f :find<Space>
+" / (search) sudah built-in di vifm, tidak perlu di-remap.
+" n / N (next / prev) juga built-in.
 nnoremap zf :filter<Space>
 
 " --- Pengurutan ---
@@ -102,8 +97,8 @@ nnoremap ob :set sort=name<CR>
 nnoremap oB :set sort=-name<CR>
 nnoremap os :set sort=size<CR>
 nnoremap oS :set sort=-size<CR>
-nnoremap om :set sort=time<CR>
-nnoremap oM :set sort=-time<CR>
+nnoremap om :set sort=mtime<CR>
+nnoremap oM :set sort=-mtime<CR>
 nnoremap oc :set sort=ctime<CR>
 nnoremap oC :set sort=-ctime<CR>
 nnoremap oa :set sort=atime<CR>
@@ -115,7 +110,7 @@ nnoremap oT :set sort=-type,name<CR>
 
 " --- Toggle ---
 nnoremap zh :set dotfiles!<CR>
-nnoremap <C-h> :set dotfiles!<CR>
+nnoremap zH :set dotfiles!<CR>
 nnoremap zp :set quickview!<CR>
 
 " --- Lompat Cepat ---

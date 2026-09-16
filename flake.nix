@@ -69,7 +69,7 @@
           ./home/fzf.nix
           ./home/git.nix
           ./home/kitty.nix
-          # ./home/mpv.nix
+          ./home/mpv
           ./home/neovim
           ./home/packages.nix
           ./home/shells.nix
